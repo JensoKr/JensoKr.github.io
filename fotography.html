@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles_header.css">
+    <link rel="stylesheet" type="text/css" href="styles_overlay.css">
+    <title>Document</title>
+</head>
+<script src="script.js"></script>
+<body>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        margin-top: 130px;
+        padding: 0;
+        background-color: #1e1f2a;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 2400px;
+        }
+        .content img {
+            width: 500px;
+            height: 333px;
+            margin-top: 20px;
+            margin-left: 10px;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+        .thumbnail {
+            cursor: pointer;
+        }
+
+        
+    </style>
+    <header>
+        <div class="header-bar">
+            <a class="bar-link" href="index.html">home </a>  
+            <a class="bar-link" href="science.html">science </a>  
+            <a class="bar-link" href="">contact </a>
+        </div>
+    </header>
+    <div class="content" >
+    <script src="fotos.js"></script>
+    </div>
+    <div class="overlay">
+        <img class="overlay-image" src="" alt="Large Image">
+    </div>
+    <script src="overlay.js"></script>
+</body>
+</html>

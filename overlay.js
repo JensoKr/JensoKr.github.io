@@ -1,9 +1,12 @@
 const thumbnails = document.querySelectorAll('.thumbnail');
 const overlay = document.querySelector('.overlay');
 const overlayImage = document.querySelector('.overlay-image');
-const closeBtn = document.querySelector('.close');
 
 overlay.style.display = 'none';
+
+function closeOverlay() {
+    overlay.style.display = 'none';
+}
 
 thumbnails.forEach(thumbnail => {
     thumbnail.addEventListener('click', () => {
@@ -18,14 +21,5 @@ thumbnails.forEach(thumbnail => {
     });
 });
 
-closeBtn.addEventListener('click', () => {
-    // Close the overlay when the close button is clicked
-    overlay.style.display = 'none';
-});
-
-overlay.addEventListener('click', (event) => {
-    // Close the overlay when clicking outside the image
-    if (event.target === overlay) {
-        overlay.style.display = 'none';
-    }
-});
+overlayImage.addEventListener('click', closeOverlay);
+overlay.addEventListener('click', closeOverlay);

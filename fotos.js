@@ -1,8 +1,7 @@
 const container  = document.querySelector(".content");
-const imgs       =10;
 const baseFolder = "/imgs/fotography_stack/";
-const baseURL = 'https://source.unsplash.com/random/';
-const nImgs      = 12;
+const baseURL    = 'https://source.unsplash.com/random/';
+const imgs       = 24
   
 
 function generateUniqueRandomNumbers(min, max, count) {
@@ -12,18 +11,20 @@ function generateUniqueRandomNumbers(min, max, count) {
     const uniqueNumbers = [];
     while (uniqueNumbers.length < count) {
         const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-        if (!uniqueNumbers.includes(randomNumber)) {
-            uniqueNumbers.push(randomNumber);
+        const formattedNumber = String(randomNumber).padStart(3, '0'); // Format as 3-digit string
+        if (!uniqueNumbers.includes(formattedNumber)) {
+            uniqueNumbers.push(formattedNumber);
         }
     }
     return uniqueNumbers;
 }
 
-const randomNumbers = generateUniqueRandomNumbers(1,13, imgs)
+const randomNumbers = generateUniqueRandomNumbers(1,imgs, imgs)
+console.log(randomNumbers);
 
 for (let i=0; i < imgs; i++ ){
   const img = document.createElement('img');
-  img.src = baseFolder+randomNumbers[i]+'.jpeg';
+  img.src = baseFolder+randomNumbers[i]+'.jpg';
   img.className = 'thumbnail'
   container.appendChild(img);
 }
