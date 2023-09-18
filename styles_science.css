@@ -1,0 +1,61 @@
+.timeline {
+    position: relative;
+    display: flex;
+    top: 0;
+    left: 0;
+    max-width: 1000px;
+    margin-left: 50px;
+    margin-top: 150px;
+    margin-bottom: -80px;
+}
+
+.entry-foto-frame {
+    margin-right: 10px;
+}
+.entry-foto {
+    object-fit: cover;
+    height: auto;
+    width: 100px;
+}
+.thumbnail {
+    object-fit: cover;
+    height: auto;
+    width: 100px;
+    cursor: pointer;
+}
+
+.entry-info {
+    width: 20%;
+}
+.entry-title {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-family: "Monaco";
+    width: 90%;
+    font-size: 18px;
+    position: inherit;
+    left: 120px;
+    top: 0px;
+}
+.entry-text {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-family: "Monaco";
+    margin-top: 5px;
+    font-size: 12px;
+    width: 85%;
+    position: inherit;
+    left: 130px;
+    top: 30px;
+}
+.entry-link {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-family: "Monaco";
+    font-size: 12px;
+    width: 70%;
+    position: inherit;
+    left: 0px;
+    top: 0px;
+    margin-top: 10px;
+}

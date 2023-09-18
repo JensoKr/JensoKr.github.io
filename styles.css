@@ -1,0 +1,40 @@
+
+
+.header-container {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    width: 330px;
+}
+.header-container a {
+    position: relative;
+    text-align: right;
+    display: block;
+    justify-items: baseline;
+    overflow: hidden;
+    z-index: 1;
+}
+.header-container a::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background-color: rgb(215, 215, 215);
+    left: 100%; 
+    transition: left 0.5s ease;
+    z-index: -1;
+}
+.header-container a:hover::before {
+    width: 100%;
+    left: 0;
+}
+.header-container a:hover {
+    color:rgb(96, 105, 92);
+}
+
+.menu-link {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-family: "Monaco";
+    font-size: 50px;
+}

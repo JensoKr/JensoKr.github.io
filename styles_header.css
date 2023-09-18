@@ -1,0 +1,85 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0px; /* Adjust the header height as needed */
+    color: #fff; /* Text color for the header */
+    z-index: 100; /* Ensure the header stays on top of other content */
+  }
+
+.header-bar {
+    width: 250px;
+    margin-left: 0px;
+    padding: 10px; /* Add padding for spacing */
+    display: block;
+    justify-content: space-between;
+    align-items: left;
+  }
+  
+  .header-bar a {
+    position: relative;
+    text-align: left;
+    margin-left: 20px;
+    display: flex;
+    overflow: hidden;
+    z-index: 10;
+}
+.header-bar a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0%;
+    right: 100%;
+    background-color: rgb(215, 215, 215);
+    transition: right 0.3s ease;
+    z-index: -1;
+}
+.header-bar a:hover::before {
+    height: 100%;
+    right: 0%;
+}
+.header-bar a:hover {
+    color:rgb(96, 105, 92);
+}
+.bar-link {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-family: "Monaco";
+    font-size: 30px;
+}
+
+.header-bar-blocked {
+    background-color: #1e1f2a;
+    width: 250px;
+    margin-left: 0px;
+    padding: 10px; /* Add padding for spacing */
+    display: block;
+    justify-content: space-between;
+    align-items: left;
+  }
+  .header-bar-blocked a {
+    position: relative;
+    text-align: left;
+    margin-left: 20px;
+    display: flex;
+    overflow: hidden;
+    z-index: 10;
+}
+.header-bar-blocked a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0%;
+    right: 100%;
+    background-color: rgb(215, 215, 215);
+    transition: right 0.3s ease;
+    z-index: -1;
+}
+.header-bar-blocked a:hover::before {
+    height: 100%;
+    right: 0%;
+}
+.header-bar-blocked a:hover {
+    color:rgb(96, 105, 92);
+}
