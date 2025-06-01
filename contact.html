@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/general.css">
+    <link rel="stylesheet" type="text/css" href="styles/science.css">
+    <link rel="stylesheet" type="text/css" href="styles/header.css">
+    <link rel="stylesheet" type="text/css" href="styles/overlay.css">
+    <title>JK Science</title>
+</head>
+<style>
+
+        body {
+            margin: 0;
+            margin-top: 200px;
+            margin-bottom: 150px;
+            background-color: #1e1f2a;
+        }
+        .contact-row {
+        display: flex;
+        justify-content: space-between; /* This spreads label and link apart */
+        align-items: center; /* Centers them vertically */
+        width: 100%;
+        max-width: 400px; /* Adjust as needed */
+        margin: 0 auto; /* Centers the whole row if parent is wide */
+        margin-bottom: 10px; /* Space between rows */
+        }
+        .contact-label {
+        text-align: right;
+            font-family: "American Typewriter";
+            font-size: 23px;
+        color: rgb(220, 219, 219);
+        flex: 1; /* Takes up half the space */
+        padding-right: 20px; /* Space between label and link */
+        }
+        .contact-link {
+        text-align: left;
+        color: rgb(255, 255, 255);
+        flex: 1;
+            font-family: "American Typewriter";
+        padding-left: 20px; /* Space between label and link */
+        }
+        .contact-link a {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        }
+        .contact-link a:hover {
+        text-decoration: underline;
+        }
+        .qr-code-container {
+        text-align: center;
+        margin-top: 20px; /* Adjust spacing as needed */
+        margin-bottom: 20px; /* Optional: adds space below */
+        }
+        .qr-code-container img {
+        max-width: 200px; /* Adjust size as needed */
+        height: auto;
+        }
+        .background-image {
+            position: fixed;
+            top: 0px;
+            width:100%;
+            object-fit: cover;
+            filter: brightness(0.25);
+            background-position: center;
+            z-index: -1;
+        }
+</style>
+
+<script src="script.js"></script>
+
+<body>
+<div class="container">
+    <header>
+        <div class="header-bar-blocked">
+            <a class="bar-link" href="index.html">home </a>  
+            <a class="bar-link" href="fotography.html">fotography </a>  
+            <a class="bar-link" href="work.html">work </a>
+        </div>
+    </header>
+    <div class="contact-row">
+        <div class="contact-label">Email</div>
+        <div class="contact-link">
+          <a href="mailto:jens.krause@kit.edu">jens.krause@kit.edu</a>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-label">Linked-In</div>
+        <div class="contact-link">
+          <a target="_tab" rel="noopener noreferrer" href="https://www.linkedin.com/in/jens-krause-a0a463245/">Jens Krause</a>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-label">Instagram</div>
+        <div class="contact-link">
+          <a target="_tab" rel="noopener noreferrer" href="https://instagram.com/jenso91">@Jenso91</a>
+        </div>
+      </div>
+      <div class="qr-code-container">
+        <img src="imgs/jenso91_qr_dark.png" alt="Instagram QR Code">
+      </div>
+
+</div>
+</body>
+</html>

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="stylesheet" type="text/css" href="styles_science.css">
-    <link rel="stylesheet" type="text/css" href="styles_header.css">
-    <link rel="stylesheet" type="text/css" href="styles_overlay.css">
+    <link rel="stylesheet" type="text/css" href="styles/general.css">
+    <link rel="stylesheet" type="text/css" href="styles/science.css">
+    <link rel="stylesheet" type="text/css" href="styles/header.css">
+    <link rel="stylesheet" type="text/css" href="styles/overlay.css">
     <title>JK Science</title>
 </head>
 <style>
@@ -15,6 +15,7 @@
             margin: 0;
             margin-top: 200px;
             margin-bottom: 150px;
+            background-color: #1e1f2a;
         }
         .background-image {
             position: fixed;
@@ -23,16 +24,18 @@
             object-fit: cover;
             filter: brightness(0.25);
             background-position: center;
+            z-index: -1;
         }
 </style>
 <script src="script.js"></script>
 <body>
-    <img class="background-image" src="/imgs/science_fotos/1.jpeg" draggable="false">
+<img class="background-image" src="/imgs/backgrounds/Davos_BD_Conference.jpeg" draggable="false">
+<div class="container">
     <header>
         <div class="header-bar-blocked">
             <a class="bar-link" href="index.html">home </a>  
             <a class="bar-link" href="fotography.html">fotography </a>  
-            <a class="bar-link" href="">contact </a>
+            <a class="bar-link" href="contact.html">contact </a>
         </div>
     </header>
     <div class="overlay">
@@ -51,9 +54,6 @@
             </div>
             <div class="entry-text">
                 I presented my recent work progress concerning the Coupling of LPJ-GUESS and the Madingley model at the ECEM. I was amazed about the positiv feedback and the interactions with multiple other working groups, which are working on similar model development.
-            </div>
-            <div class="entry-link">
-                link here
             </div>
         </div>
     </div>
@@ -91,9 +91,7 @@
             <div class="entry-text">
                 We published my progress in the offline coupling between LPJ-GUESS and the Madingley model in Ecological Modelling Issue #471. 
             </div>
-            <div class="entry-link">
-                link here
-            </div>
+                <a class="entry-link" href="https://doi.org/10.1016/j.ecolmodel.2022.110061">DOI Link</a> 
         </div>
     </div>
 
@@ -105,13 +103,14 @@
         </div>
         <div calss="entry-info">
             <div class="entry-title">
-                Poster Presentation at World Biodiversity Conference in Davos
+                Presentation at World Biodiversity Conference in Davos
             </div>
             <div class="entry-text">
                 At the World Biodiversity Conference 2020 in Davos, I was keen to present the progess in driving the Madingley model with vegetation from LPJ-GUESS. This was the first big conference I ever visited and I was overwhelmed by the interesting podeum discussions of high-profile researchers. Equally exciting was the positive feedback and the pragmatical questions of the visitors during the poster session.
             </div>
         </div>
     </div>
+</div>
 
 </body>
 </html>

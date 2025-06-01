@@ -2,9 +2,8 @@
     position: relative;
     display: flex;
     top: 0;
-    left: 0;
-    max-width: 1000px;
-    margin-left: 50px;
+    left: 20px;
+    margin-left: 0px;
     margin-top: 150px;
     margin-bottom: -80px;
 }
@@ -30,32 +29,33 @@
 .entry-title {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    font-family: "Monaco";
+    font-family: "American Typewriter";
     width: 90%;
-    font-size: 18px;
+    font-size: 23px;
     position: inherit;
     left: 120px;
     top: 0px;
+    text-decoration: underline;
 }
 .entry-text {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    font-family: "Monaco";
+    font-family: "American Typewriter";
     margin-top: 5px;
-    font-size: 12px;
-    width: 85%;
+    font-size: 16px;
+    width: 80%;
     position: inherit;
     left: 130px;
     top: 30px;
+    margin-bottom: 10px;
 }
 .entry-link {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    font-family: "Monaco";
+    font-family: "American Typewriter";
     font-size: 12px;
     width: 70%;
     position: inherit;
     left: 0px;
     top: 0px;
-    margin-top: 10px;
 }

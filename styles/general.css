@@ -33,6 +33,14 @@
 .menu-link {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    font-family: "Monaco";
+    font-family: "American Typewriter";
     font-size: 50px;
+}
+
+
+.container {
+    width: 100%; /* Standard für Mobile */
+    max-width: 1080px; /* Maximale Breite für Desktop */
+    margin: 0 auto; /* Zentriert den Container */
+    z-index: 0;
 }

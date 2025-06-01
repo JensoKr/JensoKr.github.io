@@ -1,7 +1,8 @@
 header {
     position: fixed;
     top: 0;
-    left: 0;
+    /* Center the header like the container */
+    left: calc(50% - min(1200px, 100vw) / 2);
     right: 0;
     height: 0px; /* Adjust the header height as needed */
     color: #fff; /* Text color for the header */
@@ -45,13 +46,14 @@ header {
 .bar-link {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    font-family: "Monaco";
+    font-family: "American Typewriter";
     font-size: 30px;
 }
 
 .header-bar-blocked {
     background-color: #1e1f2a;
-    width: 250px;
+    /* Center the header like the container */
+    width: calc( min(1080px, 100vw) );
     margin-left: 0px;
     padding: 10px; /* Add padding for spacing */
     display: block;
