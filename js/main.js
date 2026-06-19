@@ -33,11 +33,18 @@ function initLegalPages() {
 function initPreloader() {
   const pl = document.querySelector(".preloader");
   if (!pl) return;
-  window.addEventListener("load", () => {
-    setTimeout(() => pl.classList.add("gone"), 350);
-  });
-  // failsafe
-  setTimeout(() => pl.classList.add("gone"), 2200);
+  const fadeOut = () => pl.classList.add("gone");
+
+  // If this page has a JS-built masonry gallery, wait for it to signal
+  // that all images have finished loading. Otherwise fall back to the
+  // normal window.load event.
+  if (document.querySelector("[data-masonry]")) {
+    document.addEventListener("masonry:ready", () => setTimeout(fadeOut, 200), { once: true });
+    setTimeout(fadeOut, 8000); // generous failsafe for slow connections
+  } else {
+    window.addEventListener("load", () => setTimeout(fadeOut, 350));
+    setTimeout(fadeOut, 2200); // failsafe
+  }
 }
 
 /* ---------- Nav scroll state ---------- */
@@ -229,6 +236,17 @@ async function initMasonry() {
 
   const countEl = document.querySelector("[data-count-out]");
   if (countEl) countEl.textContent = String(order.length).padStart(2, "0");
+
+  // Signal the preloader once every gallery image has finished loading
+  // (or failed gracefully). Resolves immediately for cache hits.
+  Promise.all(items.map(a => {
+    const img = a.querySelector("img");
+    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+    return new Promise(resolve => {
+      img.addEventListener("load",  resolve, { once: true });
+      img.addEventListener("error", resolve, { once: true });
+    });
+  })).then(() => document.dispatchEvent(new Event("masonry:ready")));
 }
 
 /* ---------- Lightbox ---------- */
