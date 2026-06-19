@@ -1,0 +1,14 @@
+# ai.txt — declarative AI usage policy for this site.
+# Based on the proposed spawning.ai standard.
+# Reservation of rights under §44b UrhG and Art. 4 EU DSM Directive.
+
+User-Agent: *
+Disallow: /
+
+# This site reserves all rights for use in training, fine-tuning, retrieval-
+# augmented generation, embedding, or any other machine-learning / AI process.
+# Use of the content (text and images) for the development, training, or
+# operation of artificial intelligence or other machine-learning systems is
+# expressly prohibited without prior written consent of the rights holder.
+
+# Contact: see /impressum.html

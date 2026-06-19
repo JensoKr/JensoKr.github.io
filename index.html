@@ -1,31 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Jens Krause</title>
-    <link rel="stylesheet" type="text/css" href="styles/general.css">
-    <style>
-        body {
-            margin: 0;
-        }
-        .background-image {
-            height: 100vh;
-            width:100%;
-            object-fit: cover;
-            filter: brightness(0.75);
-        }
-    </style>
-    <script src="script.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jens Krause — Computational ecologist, data scientist and photographer based in Garmisch-Partenkirchen, Germany." />
+  <meta name="robots" content="index, follow, max-image-preview:large, noai, noimageai" />
+  <title>Jens Krause — Data Science · Photography</title>
+
+  <link rel="stylesheet" href="styles/main.css" />
 </head>
-<body>
-    <img class="background-image" src="/imgs/backgrounds/Kuhflucht.jpeg" draggable="false">
-    <div class="container">
-        <div class="header-container">
-            <a class="menu-link" href="fotography.html">fotography </a>  
-            <a class="menu-link" href="work.html">work </a>  
-            <a class="menu-link" href="contact.html">contact </a>
-        </div>
+<body class="page-overview">
+
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="pl-inner">Jens Krause<span class="dot"></span></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-dot"></span>
+        <span>Jens Krause</span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link active" href="index.html">Overview</a>
+        <a class="nav-link" href="work.html">Work</a>
+        <a class="nav-link" href="photography.html">Photography</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+      </div>
+      <a class="nav-cta" href="contact.html">Get in touch &rarr;</a>
+      <button class="menu-btn" aria-expanded="false">Menu</button>
     </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-bg">
+      <img src="imgs/backgrounds/Wetterstein.jpg" alt="" />
+    </div>
+    <div class="container hero-content">
+      <h1 class="h-display hero-title">
+        <span data-split>Thinking</span> <em data-split>nature.</em><br>
+        <span data-split>Seeing</span> <em data-split>light.</em>
+      </h1>
+
+      <p class="lead reveal delay-2" style="max-width:35ch">
+        I&rsquo;m a scientist and programmer who develops a large&#8209;scale
+        model system and analyses data interconnections &mdash; and a photographer who watches the world through the viewfinder.
+      </p>
+      <p class="lead reveal delay-2" style="max-width:35ch">
+        Through <span style="color:var(--accent-cool)"><em>thinking</em></span>, I seek to understand nature&rsquo;s complexity &mdash; through <span style="color:var(--accent-warm)"><em>seeing</em></span>, I capture moments that reveal its beauty.
+      </p>
+
+      <div class="hero-actions reveal delay-3">
+        <a class="btn btn-primary" href="work.html">
+          See my work <span class="arrow">&rarr;</span>
+        </a>
+        <a class="btn btn-ghost" href="photography.html">
+          Open the gallery <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+
+      <div class="hero-meta reveal delay-4">
+        <p><strong>Based in</strong>Garmisch&#8209;Partenkirchen, DE</p>
+        <p><strong>Currently</strong>Scientific Programmer · KIT &middot; IMK&#8209;IFU</p>
+      </div>
+
+      <div class="scroll-cue reveal delay-4">
+        <span>Scroll</span>
+        <span class="line"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- About / Two facets -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="meta reveal">
+          <span class="eyebrow">About</span>
+          <span></span>
+        </div>
+        <h2 class="h-section reveal delay-1">
+          Two practices, one curiosity &mdash; finding <em>structure</em> in complex systems.
+        </h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal delay-2">
+          <p>
+            By day I write code to further <span style="color:var(--accent-cool)"><em>develop</em></span> global vegetation <span style="color:var(--accent-cool)"><em>models</em></span> that incorporate the whole food&#8209;web &mdash;
+            to assess how biodiversity unfolds under changing boundary conditions.
+          </p>
+          <p>
+            By weekend I pack my <span style="color:var(--accent-warm)"><em>Canon R5</em></span> and head into nature. The two worlds inform each
+            other: both reward patience, attention to detail, and the willingness to wait for just the right moment.
+          </p>
+
+          <div class="stat-grid">
+            <div class="stat">
+              <div class="num"><em>8</em></div>
+              <div class="lbl">Years of research</div>
+            </div>
+            <div class="stat">
+              <div class="num"><em>3</em></div>
+              <div class="lbl">Int. conferences</div>
+            </div>
+            <div class="stat">
+              <div class="num"><em>49.000+</em></div>
+              <div class="lbl">Lines of code</div>
+            </div>
+            <div class="stat">
+              <div class="num"><em>&infin;</em></div>
+              <div class="lbl">Hours behind the lens</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="duality">
+          <a class="facet-card reveal delay-2" href="work.html">
+            <h3>Data Science<br><span style="color:var(--accent-cool)">&amp; Modeling</span></h3>
+            <p>Coupling two earth-system models, carrying out large-scale simulations on a Linux cluster, and modify large datasets.</p>
+            <div class="chip-row">
+              <span class="chip">Python</span>
+              <span class="chip">C++</span>
+              <span class="chip">netCDF</span>
+              <span class="chip">Machine Learning</span>
+              <span class="chip">Git</span>
+              <span class="chip">VS Code</span>
+              <span class="chip">Obsidian</span>
+            </div>
+          </a>
+
+          <a class="facet-card warm reveal delay-3" href="photography.html">
+            <h3>Photography<br><span style="color:var(--accent-warm)">&amp; Light</span></h3>
+            <p>Composing alpine landscapes or chasing animals in action  &mdash; the ultimate contrast between stillness and motion.</p>
+            <div class="chip-row">
+              <span class="chip">Canon EOS R5</span>
+              <span class="chip">Animals</span>
+              <span class="chip">Landscapes</span>
+              <span class="chip">Adobe CC</span>
+              <span class="chip">DaVinci Resolve</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Data Science</span>
+      <span>Photography</span>
+      <span>Programming</span>
+      <span>Mountains</span>
+      <span>Nature</span>
+      <span>Light</span>
+      <span>Data Science</span>
+      <span>Photography</span>
+      <span>Programming</span>
+      <span>Mountains</span>
+      <span>Nature</span>
+      <span>Light</span>
+    </div>
+  </section>
+
+  <!-- Selected Work -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="meta reveal">
+          <span class="eyebrow">Selected milestones · 2018 &mdash; today</span>
+        </div>
+        <h2 class="h-section reveal delay-1">
+          Career <em>highlights</em> and personal achievements.
+        </h2>
+      </div>
+
+      <div class="tl">
+        <div class="tl-axis"></div>
+
+        <article class="tl-item reveal">
+          <div class="tl-dot">01</div>
+          <div class="tl-body">
+            <div class="tl-thumb">
+              <img src="imgs/science_fotos/2025_Paper.jpg" alt="GMD paper 2025" />
+            </div>
+            <div class="tl-info">
+              <div class="yr">December 2025 · Geoscientific Model Development</div>
+              <h3><span style="color:var(--accent-warm)"><em>published</em></span> &mdash; Full Coupling of LPJ&#8209;GUESS and Madingley</h3>
+              <p>
+                First&#8209;author paper that introduces the fully coupled model system,
+                enabling simulation of bidirectional feedbacks between vegetation
+                dynamics and animal communities.
+              </p>
+              <div class="tags">
+                <span class="chip">Peer&#8209;reviewed Paper</span>
+                <span class="chip">First author</span>
+                <span class="chip">Open access</span>
+              </div>
+              <a class="link-arrow" href="https://doi.org/10.5194/gmd-18-9633-2025" target="_blank" rel="noopener">Read the paper <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="tl-item reveal">
+          <div class="tl-dot">02</div>
+          <div class="tl-body">
+            <div class="tl-thumb">
+              <img src="imgs/science_fotos/promotion.jpg" alt="PhD defence" />
+            </div>
+            <div class="tl-info">
+              <div class="yr">April 2025 · Karlsruhe</div>
+              <h3>Doctorate <span style="color:var(--accent-warm)"><em>"dr. rer. nat."</em></span> at KIT</h3>
+              <p>
+                Defended my thesis &mdash; <em>&ldquo;Ecosystem Feedback from
+                Animal&#8209;Vegetation Interactions: A Modeling Approach&rdquo;</em> &mdash;
+                with distinction (<span style="color:var(--accent-cool)"><em>magna cum laude</em></span>)
+                before an expert committee.
+              </p>
+              <div class="tags">
+                <span class="chip">Defence</span>
+                <span class="chip">magna cum laude</span>
+              </div>
+              <a class="link-arrow" href="https://publikationen.bibliothek.kit.edu/1000181355" target="_blank" rel="noopener">KITopen entry <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="tl-item tl-ellipsis reveal">
+          <div class="tl-dot tl-dot-ellipsis">
+            <span></span><span></span><span></span>
+          </div>
+        </article>
+
+        <article class="tl-item reveal">
+          <div class="tl-dot">05</div>
+          <div class="tl-body">
+            <div class="tl-thumb">
+              <img src="imgs/science_fotos/2022_Paper.jpg" alt="Ecological Modelling 2022 paper" />
+            </div>
+            <div class="tl-info">
+              <div class="yr">2022 · Ecological Modelling</div>
+              <h3><span style="color:var(--accent-warm)"><em>published</em></span> &mdash; One&#8209;Way Coupling of LPJ&#8209;GUESS and Madingley</h3>
+              <p>
+                First&#8209;author paper describing how vegetation outputs from
+                LPJ&#8209;GUESS can drive the Madingley food&#8209;web model &mdash; the
+                foundation for the later full coupling approach and my thesis.
+              </p>
+              <div class="tags">
+                <span class="chip">Peer&#8209;reviewed Paper</span>
+                <span class="chip">First author</span>
+                <span class="chip">Open access</span>
+              </div>
+              <a class="link-arrow" href="https://doi.org/10.1016/j.ecolmodel.2022.110061" target="_blank" rel="noopener">Read the paper <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+        </article>
+
+        <div class="tl-tail reveal">
+          <article class="tl-item tl-ellipsis">
+            <div class="tl-dot tl-dot-ellipsis">
+              <span></span><span></span><span></span>
+            </div>
+          </article>
+          <div class="tl-tail-cta">
+            <a class="btn btn-ghost" href="work.html">Full research timeline <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photography preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="meta reveal">
+          <span class="eyebrow">Photography · selected Portfolio </span>
+        </div>
+        <h2 class="h-section reveal delay-1">
+          Quiet moments, <em>loud landscapes.</em>
+        </h2>
+      </div>
+
+      <div class="gallery-preview reveal delay-2">
+        <a class="gp-1" href="imgs/photography_stack/016.avif"><img src="imgs/photography_stack/016.avif" alt=""></a>
+        <a class="gp-2" href="imgs/photography_stack/011.avif"><img src="imgs/photography_stack/011.avif" alt=""></a>
+        <a class="gp-3" href="imgs/photography_stack/019.avif"><img src="imgs/photography_stack/019.avif" alt=""></a>
+        <a class="gp-4" href="imgs/photography_stack/002.avif"><img src="imgs/photography_stack/002.avif" alt=""></a>
+        <a class="gp-5" href="imgs/photography_stack/022.avif"><img src="imgs/photography_stack/022.avif" alt=""></a>
+        <a class="gp-6" href="imgs/photography_stack/020.avif"><img src="imgs/photography_stack/020.avif" alt=""></a>
+        <a class="gp-7" href="imgs/photography_stack/018.avif"><img src="imgs/photography_stack/018.avif" alt=""></a>
+        <a class="gp-8" href="imgs/photography_stack/017.avif"><img src="imgs/photography_stack/017.avif" alt=""></a>
+      </div>
+
+      <div style="margin-top:3rem" class="reveal">
+        <a class="btn btn-ghost" href="photography.html">Open the full gallery <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="meta reveal">
+          <span class="eyebrow">Contact</span>
+        </div>
+        <h2 class="h-section reveal delay-1">
+          Have a project, a paper, or a peak in mind?<br>
+          <em>Let&rsquo;s talk.</em>
+        </h2>
+      </div>
+      <div class="reveal delay-2">
+        <a class="btn btn-primary" href="contact.html">Open contact <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:1rem">
+      <span>&copy; 2026 Jens Krause</span>
+      <div class="footer-legal">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
