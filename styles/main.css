@@ -915,6 +915,10 @@ h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
   display: grid; place-items: center;
   font-size: 1.2rem;
   transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+  /* The img has transform: scale(...) which creates a stacking context;
+     because it follows the buttons in DOM order it would otherwise
+     paint over them. Lift the controls above explicitly. */
+  z-index: 2;
 }
 .lightbox-close:hover,
 .lightbox-prev:hover,
