@@ -448,23 +448,23 @@ h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
     animation-delay: 0.00s;
   }
   .nav.menu-open .nav-link:nth-child(2) {
-    top: 7.2rem;
-    --from-y: -7.2rem;
+    top: 7rem;
+    --from-y: -7rem;
     animation-delay: 0.07s;
   }
   .nav.menu-open .nav-link:nth-child(3) {
-    top: 10.4rem;
-    --from-y: -10.4rem;
+    top: 10rem;
+    --from-y: -10rem;
     animation-delay: 0.14s;
   }
   .nav.menu-open .nav-link:nth-child(4) {
-    top: 13.6rem;
-    --from-y: -13.6rem;
+    top: 13rem;
+    --from-y: -13rem;
     animation-delay: 0.21s;
   }
   .nav.menu-open .nav-link:nth-child(5) {
-    top: 16.8rem;
-    --from-y: -16.8rem;
+    top: 16rem;
+    --from-y: -16rem;
     animation-delay: 0.28s;
   }
 }
