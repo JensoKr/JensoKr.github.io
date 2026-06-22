@@ -77,21 +77,38 @@ function initMobileMenu() {
 function initReveal() {
   const els = document.querySelectorAll(".reveal");
   if (!els.length) return;
-  // Work page has tall vertical thumbnails — trigger reveal eagerly
-  // so items appear when only a sliver is on screen.
-  const isWork = document.body.classList.contains("page-work");
-  const opts = isWork
-    ? { threshold: 0.04, rootMargin: "0px 0px 8% 0px" }     // ~4% visible OR within 8% below viewport
-    : { threshold: 0.12, rootMargin: "0px 0px -8% 0px" };   // default for the other pages
-  const io = new IntersectionObserver((entries) => {
+
+  const isWork      = document.body.classList.contains("page-work");
+  const defaultOpts = { threshold: 0.12, rootMargin: "0px 0px -8% 0px" };
+  const eagerOpts   = { threshold: 0.04, rootMargin: "0px 0px 8% 0px" };
+
+  // Lazy lookup of `io` inside the callback — that way, after we
+  // swap observers below, the new instance is used to unobserve.
+  let io;
+  const cb = (entries) => {
     entries.forEach(en => {
       if (en.isIntersecting) {
         en.target.classList.add("in");
         io.unobserve(en.target);
       }
     });
-  }, opts);
+  };
+
+  // Start with the conservative threshold everywhere — anything
+  // already in the viewport on load reveals, nothing below it does.
+  io = new IntersectionObserver(cb, defaultOpts);
   els.forEach(el => io.observe(el));
+
+  // On the work page, switch to the eager observer the moment the
+  // user scrolls for the first time — any remaining .reveal element
+  // is then re-checked under the looser rule.
+  if (isWork) {
+    window.addEventListener("scroll", () => {
+      io.disconnect();
+      io = new IntersectionObserver(cb, eagerOpts);
+      document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
+    }, { once: true, passive: true });
+  }
 }
 
 /* ---------- Split text rise ---------- */
