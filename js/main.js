@@ -80,7 +80,7 @@ function initReveal() {
 
   const isWork      = document.body.classList.contains("page-work");
   const defaultOpts = { threshold: 0.12, rootMargin: "0px 0px -8% 0px" };
-  const eagerOpts   = { threshold: 0.04, rootMargin: "0px 0px 8% 0px" };
+  const eagerOpts   = { threshold: 0.08, rootMargin: "0px 0px 8% 0px" };
 
   // Lazy lookup of `io` inside the callback — that way, after we
   // swap observers below, the new instance is used to unobserve.
