@@ -410,8 +410,8 @@ h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
   .nav.menu-open .nav-link {
     position: absolute;
     right: 0;
-    width: 180px;
-    padding: 0.65rem 1.4rem;
+    width: 135px;
+    padding: 0.55rem 0.75rem;
     text-align: center;
     white-space: nowrap;
     border-radius: 999px;
