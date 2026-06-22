@@ -77,6 +77,12 @@ function initMobileMenu() {
 function initReveal() {
   const els = document.querySelectorAll(".reveal");
   if (!els.length) return;
+  // Work page has tall vertical thumbnails — trigger reveal eagerly
+  // so items appear when only a sliver is on screen.
+  const isWork = document.body.classList.contains("page-work");
+  const opts = isWork
+    ? { threshold: 0.04, rootMargin: "0px 0px 8% 0px" }     // ~4% visible OR within 8% below viewport
+    : { threshold: 0.12, rootMargin: "0px 0px -8% 0px" };   // default for the other pages
   const io = new IntersectionObserver((entries) => {
     entries.forEach(en => {
       if (en.isIntersecting) {
@@ -84,7 +90,7 @@ function initReveal() {
         io.unobserve(en.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  }, opts);
   els.forEach(el => io.observe(el));
 }
 
