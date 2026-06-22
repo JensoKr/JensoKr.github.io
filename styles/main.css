@@ -317,28 +317,156 @@ h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
   cursor: pointer;
 }
 
-/* Mobile menu */
+/* Mobile menu — Menu button stays unchanged; on tap, individual
+   glass pills cascade out from BEHIND the button and slide
+   downward into their cascading positions. Each item has its own
+   self-contained frame in the same liquid-glass styling. */
+
+@keyframes navItemDrop {
+  from { opacity: 0; transform: translateY(var(--from-y, 0)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 720px) {
   .nav-links { display: none; }
-  .menu-btn  { display: inline-flex; align-items: center; gap: 0.4rem; }
-  .nav.menu-open .nav-links {
-    display: flex;
+  .nav-cta   { display: none; }
+
+  /* Menu button — closed: outlined pill with "Menu" text.
+     Open: morphs into a glass-style close (×) button, same look as the
+     lightbox controls. Explicit width/height on BOTH states so the
+     frame interpolates smoothly. Label and icon crossfade via opacity
+     instead of display-swap (display isn't animatable). */
+  .menu-btn {
+    display: grid;
+    place-items: center;
     position: absolute;
-    top: 100%;
-    left: 0; right: 0;
-    flex-direction: column;
-    gap: 0;
-    padding: 1rem var(--gutter) 1.4rem;
-    background: rgba(10, 11, 16, 0.92);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--border);
+    top: 1.1rem;
+    right: var(--gutter);
+    z-index: 3;
+    width: 84px;
+    height: 44px;
+    padding: 0 1rem;
+    border-radius: 999px;
+    transition:
+      width         0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      height        0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      padding       0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      border-radius 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      background    0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color  0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow    0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
+  /* Both spans share grid-cell 1/1 — they stack on top of each other,
+     opacity decides which one is visible. */
+  .menu-btn-label,
+  .menu-btn-close {
+    grid-column: 1;
+    grid-row: 1;
+    line-height: 1;
+    transition: opacity 0.3s var(--ease);
+  }
+  .menu-btn-label { opacity: 1; }
+  .menu-btn-close { opacity: 0; font-size: 1.45rem; }
+
+  .nav.menu-open .menu-btn-label { opacity: 0; }
+  .nav.menu-open .menu-btn-close { opacity: 1; }
+
+  /* Open state — circular liquid-glass close button (same recipe as
+     the gallery lightbox controls). */
+  .nav.menu-open .menu-btn {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border-radius: 50%;
+    background:
+      linear-gradient(155deg,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(255, 255, 255, 0.05) 42%,
+        rgba(255, 255, 255, 0)    70%,
+        rgba(255, 255, 255, 0.08) 100%
+      ),
+      rgba(15, 16, 22, 0.72);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+      inset 0  1px 0 rgba(255, 255, 255, 0.38),
+      inset 0 -1px 0 rgba(0,   0,   0,   0.10),
+      0  8px 24px rgba(0, 0, 0, 0.35),
+      0  2px  6px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Container — anchored at the same position as the Menu button,
+     so each item starts hidden right behind it. */
+  .nav.menu-open .nav-links {
+    display: block;
+    position: absolute;
+    top: 1.1rem;
+    right: var(--gutter);
+    z-index: 1;          /* below the Menu button */
+  }
+
+  /* Each link is its own glass pill */
   .nav.menu-open .nav-link {
-    padding: 0.85rem 0;
-    border-top: 1px solid var(--border);
-    font-size: 1rem;
+    position: absolute;
+    right: 0;
+    width: 180px;
+    padding: 0.65rem 1.4rem;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    background:
+      linear-gradient(155deg,
+        rgba(255, 255, 255, 0.20) 0%,
+        rgba(255, 255, 255, 0.04) 42%,
+        rgba(255, 255, 255, 0)    70%,
+        rgba(255, 255, 255, 0.07) 100%
+      ),
+      rgba(15, 16, 22, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+      inset 0  1px 0 rgba(255, 255, 255, 0.34),
+      inset 0 -1px 0 rgba(0,   0,   0,   0.10),
+      0  8px 24px rgba(0, 0, 0, 0.35),
+      0  2px  6px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s var(--ease), color 0.3s var(--ease);
+    opacity: 0;
+    animation: navItemDrop 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-  .nav-cta { display: none; }
+  .nav.menu-open .nav-link::after { display: none; }
+  .nav.menu-open .nav-link:hover  { background: linear-gradient(155deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.10) 100%), rgba(20,22,30,0.82); }
+  .nav.menu-open .nav-link.active { background: linear-gradient(155deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.14) 100%), rgba(25,28,40,0.85); }
+
+  /* Each item lives at a fixed final position (top); the animation
+     translates from "behind the Menu button" (from-y) to translateY(0). */
+  .nav.menu-open .nav-link:nth-child(1) {
+    top: 4rem;
+    --from-y: -4rem;
+    animation-delay: 0.00s;
+  }
+  .nav.menu-open .nav-link:nth-child(2) {
+    top: 7.2rem;
+    --from-y: -7.2rem;
+    animation-delay: 0.07s;
+  }
+  .nav.menu-open .nav-link:nth-child(3) {
+    top: 10.4rem;
+    --from-y: -10.4rem;
+    animation-delay: 0.14s;
+  }
+  .nav.menu-open .nav-link:nth-child(4) {
+    top: 13.6rem;
+    --from-y: -13.6rem;
+    animation-delay: 0.21s;
+  }
+  .nav.menu-open .nav-link:nth-child(5) {
+    top: 16.8rem;
+    --from-y: -16.8rem;
+    animation-delay: 0.28s;
+  }
 }
 
 /* -------- Buttons -------- */
@@ -902,32 +1030,84 @@ h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
   transition: transform 0.5s var(--ease);
 }
 .lightbox.open img { transform: scale(1); }
+/* ----- Liquid-glass lightbox controls -----
+   Layered approach to mimic Apple's "Liquid Glass" look:
+   - Diagonal specular gradient on the surface (top-light highlight)
+   - Backdrop blur + saturation boost so colours behind feel "alive"
+   - Inset shadows for the glass bevel (bright top edge, soft bottom)
+   - Outer floating shadow for the elevated feel
+*/
 .lightbox-close,
 .lightbox-prev,
 .lightbox-next {
   position: absolute;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid var(--border-strong);
+  background:
+    linear-gradient(155deg,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.05) 42%,
+      rgba(255, 255, 255, 0)    70%,
+      rgba(255, 255, 255, 0.08) 100%
+    ),
+    rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(5px) saturate(180%);
+  -webkit-backdrop-filter: blur(5px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--text);
-  width: 48px; height: 48px;
+  width: 52px; height: 52px;
   border-radius: 50%;
   cursor: pointer;
   display: grid; place-items: center;
-  font-size: 1.2rem;
-  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
-  /* The img has transform: scale(...) which creates a stacking context;
-     because it follows the buttons in DOM order it would otherwise
-     paint over them. Lift the controls above explicitly. */
+  font-size: 1.25rem;
+  box-shadow:
+    inset 0  1px 0 rgba(255, 255, 255, 0.38),
+    inset 0 -1px 0 rgba(0,   0,   0,   0.10),
+    0  8px 28px rgba(0, 0, 0, 0.28),
+    0  2px  8px rgba(0, 0, 0, 0.15);
+  transition:
+    background   0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    transform    0.4s  cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow   0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  /* The lightbox <img> has transform: scale(...) which creates a
+     stacking context; because it follows the buttons in DOM order
+     it would otherwise paint over them. Lift the controls above. */
   z-index: 2;
 }
+
 .lightbox-close:hover,
 .lightbox-prev:hover,
-.lightbox-next:hover { background: rgba(255,255,255,0.14); transform: scale(1.05); }
+.lightbox-next:hover {
+  background:
+    linear-gradient(155deg,
+      rgba(255, 255, 255, 0.32) 0%,
+      rgba(255, 255, 255, 0.06) 42%,
+      rgba(255, 255, 255, 0)    70%,
+      rgba(255, 255, 255, 0.12) 100%
+    ),
+    rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.30);
+  box-shadow:
+    inset 0  1px 0 rgba(255, 255, 255, 0.52),
+    inset 0 -1px 0 rgba(0,   0,   0,   0.10),
+    0 14px 40px rgba(0, 0, 0, 0.32),
+    0  4px 12px rgba(0, 0, 0, 0.20);
+  transform: scale(1.08);
+}
+
+.lightbox-close:active,
+.lightbox-prev:active,
+.lightbox-next:active {
+  transform: scale(0.94);
+  transition-duration: 0.12s;
+}
+
 .lightbox-close { top: 1.5rem; right: 1.5rem; }
-.lightbox-prev  { left: 1.5rem; top: 50%; transform: translateY(-50%); }
+.lightbox-prev  { left: 1.5rem;  top: 50%; transform: translateY(-50%); }
 .lightbox-next  { right: 1.5rem; top: 50%; transform: translateY(-50%); }
-.lightbox-prev:hover { transform: translateY(-50%) scale(1.05); }
-.lightbox-next:hover { transform: translateY(-50%) scale(1.05); }
+.lightbox-prev:hover  { transform: translateY(-50%) scale(1.08); }
+.lightbox-next:hover  { transform: translateY(-50%) scale(1.08); }
+.lightbox-prev:active { transform: translateY(-50%) scale(0.94); }
+.lightbox-next:active { transform: translateY(-50%) scale(0.94); }
 .lightbox-caption {
   position: absolute;
   bottom: 1.5rem; left: 50%;
