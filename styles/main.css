@@ -686,6 +686,11 @@ h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Italic digits in Instrument Serif extend visually past their
+     character box on the right — give the em some padding-right so
+     the gradient-clip text doesn't cut the tail off. */
+  display: inline-block;
+  padding-right: 0.15em;
 }
 .stat .lbl {
   margin-top: 0.5rem;
