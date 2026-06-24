@@ -319,7 +319,9 @@ async function initMasonry() {
   let resizeTimer;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => { currentCols = 0; layout(); }, 150);
+    // layout() guards itself against same-col-count calls, so the URL
+    // bar resize on iOS (which doesn't change width) is a no-op.
+    resizeTimer = setTimeout(layout, 150);
   });
 
   // All images settled + layout placed → preloader can fade now.
@@ -350,6 +352,34 @@ function initLightbox() {
   const refreshItems = () =>
     items = Array.from(document.querySelectorAll("[data-lightbox], .masonry-item, .gallery-preview a"));
 
+  // Safari (especially iOS) caches the backdrop-filter region of an
+  // element. When the lightbox image changes, the prev/next/close
+  // buttons keep showing the stale blur of the previous frame until
+  // *something* invalidates them — typically a cursor move.
+  // The most reliable invalidation: drop backdrop-filter to none for a
+  // frame, then restore it. Safari then recomposites against the new
+  // content underneath.
+  const buttons = [".lightbox-close", ".lightbox-prev", ".lightbox-next"]
+    .map(sel => lb.querySelector(sel))
+    .filter(Boolean);
+
+  const refreshBackdrops = () => {
+    buttons.forEach(b => {
+      b.style.webkitBackdropFilter = "none";
+      b.style.backdropFilter = "none";
+    });
+    // Two RAFs so Safari actually paints the "none" state before
+    // re-enabling — otherwise the change can get coalesced into a no-op.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        buttons.forEach(b => {
+          b.style.webkitBackdropFilter = "";
+          b.style.backdropFilter = "";
+        });
+      });
+    });
+  };
+
   const show = (i) => {
     refreshItems();
     if (!items.length) return;
@@ -360,6 +390,14 @@ function initLightbox() {
     cap.textContent = `${String(idx + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
     lb.classList.add("open");
     document.body.style.overflow = "hidden";
+    // img.decode() resolves when the new image is fully painted — works
+    // for cached images too (the load event sometimes doesn't). Fallback
+    // to "load" event if decode isn't supported.
+    if (typeof img.decode === "function") {
+      img.decode().then(refreshBackdrops).catch(refreshBackdrops);
+    } else {
+      img.addEventListener("load", refreshBackdrops, { once: true });
+    }
   };
   const close = () => {
     lb.classList.remove("open");
