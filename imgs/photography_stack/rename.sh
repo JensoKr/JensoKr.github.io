@@ -38,3 +38,10 @@ done
 
 echo ""
 echo "Done. $((counter - 1)) file(s) renamed."
+
+# ---- Write img_count manifest ----
+# Plain-text file consumed by js/main.js so the gallery can pick its
+# random selection without having to probe the folder over HTTP.
+COUNT=$(ls -1 *."$EXT" 2>/dev/null | wc -l | tr -d ' ')
+echo "$COUNT" > img_count
+echo "Wrote img_count: $COUNT"

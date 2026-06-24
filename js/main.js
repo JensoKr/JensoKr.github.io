@@ -163,27 +163,37 @@ function initCursorGlow() {
 }
 
 /* ---------- Masonry reveal & gallery build ---------- */
-/* Finds the highest sequential file (NNN.ext) by probing with the Image
-   loader: works on http://, file://, GitHub Pages and local dev alike,
-   regardless of MIME-type config. The probe-loads also warm the browser
-   cache so the actual gallery render comes straight from memory. */
-async function probeCount(base, ext, hardMax) {
+/* Determine the photo count. Two paths:
+   1) Fetch the `img_count` manifest written by rename.sh. Tiny HTTP
+      request, instant — used on http:// and GitHub Pages.
+   2) If fetch fails (e.g. opened directly via file://, where browsers
+      block fetch as cross-origin), fall back to binary-search probing
+      with <img> elements. Slower but works everywhere. */
+async function fetchImageCount(base) {
+  try {
+    const r = await fetch(`${base}img_count`, { cache: "no-store" });
+    if (r.ok) {
+      const n = parseInt((await r.text()).trim(), 10);
+      if (Number.isFinite(n) && n > 0) return n;
+    }
+  } catch { /* fetch unavailable (e.g. file://) — fall through to probe */ }
+  return probeCountViaImage(base);
+}
+
+async function probeCountViaImage(base, ext = "avif", hardMax = 500) {
   const exists = (n) => new Promise(resolve => {
     const img = new Image();
     img.onload  = () => resolve(true);
     img.onerror = () => resolve(false);
     img.src = `${base}${String(n).padStart(3, "0")}.${ext}`;
   });
-  // Doubling: find an upper bound that does NOT exist.
   let lo = 0, hi = 1;
   while (hi <= hardMax && (await exists(hi))) {
     lo = hi;
     hi *= 2;
   }
   hi = Math.min(hi, hardMax);
-  // If we capped right at hardMax, check whether that index exists.
   if (hi === hardMax && (await exists(hardMax))) return hardMax;
-  // Binary search between lo (exists) and hi (doesn't).
   while (hi - lo > 1) {
     const mid = Math.floor((lo + hi) / 2);
     if (await exists(mid)) lo = mid; else hi = mid;
@@ -199,41 +209,84 @@ async function initMasonry() {
   const ext  = m.dataset.ext  || "avif";
   const maxDisplay = parseInt(m.dataset.maxDisplay, 10) || 30;
 
-  // Explicit data-count wins (useful for tests). Otherwise probe the folder
-  // up to maxDisplay — no need to probe past what we'd ever show.
+  // data-count override → manifest → 0 (giving up gracefully).
   const explicit = parseInt(m.dataset.count, 10);
-  const totalImgs = explicit > 0 ? explicit : await probeCount(base, ext, maxDisplay);
+  const totalImgs = explicit > 0 ? explicit : await fetchImageCount(base);
   if (totalImgs === 0) return;
 
-  // Build shuffled order across ALL available, then cap to maxDisplay.
-  const all = Array.from({ length: totalImgs }, (_, i) => i + 1);
-  for (let i = all.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [all[i], all[j]] = [all[j], all[i]];
-  }
-  const order = all.slice(0, maxDisplay);
+  // Remember the last batch so a reload guarantees fresh photos.
+  const LS_KEY = "gallery.lastSeen";
+  let lastSeen = [];
+  try { lastSeen = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch {}
 
-  // Pre-build all item elements so we can shuffle them between columns
-  // on resize without losing animation state.
-  const items = order.map((n, i) => {
+  // Build the available pool: everything except what was shown last time.
+  // If we'd be left with too few photos, fall back to the full pool.
+  const all = Array.from({ length: totalImgs }, (_, i) => i + 1);
+  let pool = all.filter(n => !lastSeen.includes(n));
+  if (pool.length < maxDisplay) pool = all.slice();
+
+  // Fisher–Yates shuffle
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  const order = pool.slice(0, maxDisplay);
+
+  // Persist for the next reload
+  try { localStorage.setItem(LS_KEY, JSON.stringify(order)); } catch {}
+
+  // Reshuffle button → reload the page with a fresh selection
+  const reshuffleBtn = document.querySelector(".gallery-shuffle");
+  if (reshuffleBtn) reshuffleBtn.addEventListener("click", () => location.reload());
+
+  // Build item DOM. Setting img.src already triggers the network load
+  // even before the element is attached anywhere.
+  const items = order.map((n) => {
     const num = String(n).padStart(3, "0");
     const a = document.createElement("a");
     a.className = "masonry-item";
     a.href = `${base}${num}.${ext}`;
-    a.dataset.idx = i;
-    a.style.animationDelay = (Math.min(i, 20) * 0.04) + "s";
     const img = document.createElement("img");
     img.src = `${base}${num}.${ext}`;
     img.alt = `Photograph #${num}`;
     img.draggable = false;
-    img.onerror = () => a.remove();
     a.appendChild(img);
     return a;
   });
 
+  // Update banner now — doesn't depend on image loads.
+  const countEl = document.querySelector("[data-count-out]");
+  if (countEl) {
+    countEl.textContent = totalImgs < 10
+      ? String(totalImgs)
+      : `${Math.floor(totalImgs / 10) * 10}+`;
+  }
+
+  // Wait for every image to load (or fail). Capture each item's aspect
+  // ratio so we can balance columns by height instead of by count.
+  const meta = await Promise.all(items.map(a => new Promise(resolve => {
+    const img = a.querySelector("img");
+    const finish = (ar) => resolve({ a, ar });
+    if (img.complete && img.naturalWidth > 0) {
+      finish(img.naturalHeight / img.naturalWidth);
+    } else {
+      img.addEventListener("load",
+        () => finish(img.naturalHeight / img.naturalWidth),
+        { once: true });
+      img.addEventListener("error",
+        () => finish(null),     // mark broken — will be skipped below
+        { once: true });
+    }
+  })));
+  const valid = meta.filter(x => x.ar !== null);
+
   const colCountFor = (w) => w <= 540 ? 1 : (w <= 900 ? 2 : 3);
   let currentCols = 0;
 
+  // True masonry: every item goes into the currently shortest column.
+  // We use aspect ratio (height ÷ width) as a proxy for "how much
+  // vertical space this image will occupy" — exact since all columns
+  // share the same width.
   const layout = () => {
     const cols = colCountFor(window.innerWidth);
     if (cols === currentCols) return;
@@ -244,9 +297,21 @@ async function initMasonry() {
       c.className = "masonry-col";
       return c;
     });
-    // Round-robin distribute — preserves the random visit order while
-    // guaranteeing every column starts at the same top.
-    items.forEach((el, i) => tracks[i % cols].appendChild(el));
+    const heights = new Array(cols).fill(0);
+    valid.forEach(({ a, ar }) => {
+      let minIdx = 0;
+      for (let i = 1; i < cols; i++) {
+        if (heights[i] < heights[minIdx]) minIdx = i;
+      }
+      tracks[minIdx].appendChild(a);
+      heights[minIdx] += ar;
+    });
+    // Reset cascade so each column animates top-to-bottom, in parallel
+    tracks.forEach(track => {
+      Array.from(track.children).forEach((child, ri) => {
+        child.style.animationDelay = (Math.min(ri, 20) * 0.05) + "s";
+      });
+    });
     tracks.forEach(t => m.appendChild(t));
   };
 
@@ -254,22 +319,11 @@ async function initMasonry() {
   let resizeTimer;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(layout, 150);
+    resizeTimer = setTimeout(() => { currentCols = 0; layout(); }, 150);
   });
 
-  const countEl = document.querySelector("[data-count-out]");
-  if (countEl) countEl.textContent = String(order.length).padStart(2, "0");
-
-  // Signal the preloader once every gallery image has finished loading
-  // (or failed gracefully). Resolves immediately for cache hits.
-  Promise.all(items.map(a => {
-    const img = a.querySelector("img");
-    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
-    return new Promise(resolve => {
-      img.addEventListener("load",  resolve, { once: true });
-      img.addEventListener("error", resolve, { once: true });
-    });
-  })).then(() => document.dispatchEvent(new Event("masonry:ready")));
+  // All images settled + layout placed → preloader can fade now.
+  document.dispatchEvent(new Event("masonry:ready"));
 }
 
 /* ---------- Lightbox ---------- */

@@ -38,7 +38,7 @@
   </nav>
 
   <!-- Header -->
-  <section class="section" style="padding: 10rem 0 3rem">
+  <section class="section" style="padding: 10rem 0 1.5rem">
     <div class="container">
       <div class="section-head" style="align-items: end; margin-bottom: 2rem">
         <div class="meta reveal">
@@ -53,19 +53,25 @@
         Click any photograph for a closer look; use the arrow keys to wander.
       </p>
 
-      <div class="gallery-controls reveal delay-3" style="margin-top: 3rem">
+      <div class="gallery-controls reveal delay-3" style="margin-top: 1rem">
         <span class="gallery-count">
-          A random selection of <span data-count-out>00</span> photographs
+          A random selection from <span data-count-out>0</span> photographs
         </span>
-        <span class="gallery-count">
-          Esc to close &middot; &larr; / &rarr; to navigate
-        </span>
+        <div class="gallery-right">
+          <button class="gallery-shuffle" type="button" aria-label="Reshuffle gallery">
+            <span class="icon" aria-hidden="true">&#8635;</span>
+            <span>Reshuffle</span>
+          </button>
+          <span class="gallery-count">
+            Esc to close &middot; &larr; / &rarr; to navigate
+          </span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Masonry Gallery -->
-  <section class="section" style="padding-top: 1rem">
+  <section class="section" style="padding: 0.5rem 0 3rem">
     <div class="container">
       <div class="masonry" data-masonry data-base="imgs/photography_stack/" data-ext="avif" data-max-display="30"></div>
     </div>
@@ -85,7 +91,7 @@
   </section>
 
   <footer class="footer">
-    <div class="container" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:1rem">
+    <div class="container" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:0rem">
       <span>&copy; 2026 Jens Krause</span>
       <div class="footer-legal">
         <a href="impressum.html">Impressum</a>
