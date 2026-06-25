@@ -45,3 +45,29 @@ echo "Done. $((counter - 1)) file(s) renamed."
 COUNT=$(ls -1 *."$EXT" 2>/dev/null | wc -l | tr -d ' ')
 echo "$COUNT" > img_count
 echo "Wrote img_count: $COUNT"
+
+# ---- Write metadata.{json,js} (EXIF for lightbox captions) ----
+# Two outputs from the same data:
+#   metadata.json  → loaded via fetch() on http:// / GitHub Pages
+#   metadata.js    → loaded via <script> tag — also works on file://
+#                    where fetch is blocked as cross-origin.
+# Requires exiftool. If not installed, the gallery falls back to the
+# simple "NN / NNN" counter caption.
+if command -v exiftool >/dev/null 2>&1; then
+  echo "Extracting EXIF → metadata.{json,js} …"
+  EXIF_JSON=$(exiftool -json -q -Model -LensModel -ISO -Aperture \
+              -ExposureTime -FocalLength *."$EXT" 2>/dev/null)
+  if [ -n "$EXIF_JSON" ]; then
+    echo "$EXIF_JSON" > metadata.json
+    {
+      echo "window.__galleryMetadata ="
+      echo "$EXIF_JSON"
+      echo ";"
+    } > metadata.js
+    echo "Wrote metadata.json + metadata.js"
+  else
+    echo "(exiftool returned no data — skipping)"
+  fi
+else
+  echo "(exiftool not installed — skipping metadata files)"
+fi

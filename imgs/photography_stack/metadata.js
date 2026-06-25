@@ -1,0 +1,803 @@
+window.__galleryMetadata =
+[{
+  "SourceFile": "001.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 800,
+  "Aperture": 10.0,
+  "ExposureTime": "1/320",
+  "FocalLength": "33.0 mm"
+},
+{
+  "SourceFile": "002.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 4000,
+  "Aperture": 8.0,
+  "ExposureTime": "1/640",
+  "FocalLength": "105.0 mm"
+},
+{
+  "SourceFile": "003.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 1600,
+  "Aperture": 8.0,
+  "ExposureTime": "1/640",
+  "FocalLength": "359.0 mm"
+},
+{
+  "SourceFile": "004.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 3200,
+  "Aperture": 8.0,
+  "ExposureTime": "1/250",
+  "FocalLength": "325.0 mm"
+},
+{
+  "SourceFile": "005.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 5000,
+  "Aperture": 8.0,
+  "ExposureTime": "1/500",
+  "FocalLength": "400.0 mm"
+},
+{
+  "SourceFile": "006.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 250,
+  "Aperture": 5.6,
+  "ExposureTime": "1/100",
+  "FocalLength": "105.0 mm"
+},
+{
+  "SourceFile": "007.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 100,
+  "Aperture": 7.1,
+  "ExposureTime": "1/400",
+  "FocalLength": "50.0 mm"
+},
+{
+  "SourceFile": "008.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF70-200mm F4 L IS USM",
+  "ISO": 125,
+  "Aperture": 8.0,
+  "ExposureTime": "1/250",
+  "FocalLength": "200.0 mm"
+},
+{
+  "SourceFile": "009.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF16mm F2.8 STM",
+  "ISO": 2500,
+  "Aperture": 4.0,
+  "ExposureTime": 20,
+  "FocalLength": "16.0 mm"
+},
+{
+  "SourceFile": "010.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 500,
+  "Aperture": 10.0,
+  "ExposureTime": "1/640",
+  "FocalLength": "347.0 mm"
+},
+{
+  "SourceFile": "011.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF70-200mm F4 L IS USM",
+  "ISO": 160,
+  "Aperture": 5.6,
+  "ExposureTime": "1/250",
+  "FocalLength": "200.0 mm"
+},
+{
+  "SourceFile": "012.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 100,
+  "Aperture": 20.0,
+  "ExposureTime": "1/4",
+  "FocalLength": "31.0 mm"
+},
+{
+  "SourceFile": "013.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF70-200mm F4 L IS USM",
+  "ISO": 100,
+  "Aperture": 4.0,
+  "ExposureTime": "1/1600",
+  "FocalLength": "200.0 mm"
+},
+{
+  "SourceFile": "014.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 100,
+  "Aperture": 4.0,
+  "ExposureTime": "1/2500",
+  "FocalLength": "37.0 mm"
+},
+{
+  "SourceFile": "015.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF70-200mm F4 L IS USM",
+  "ISO": 500,
+  "Aperture": 8.0,
+  "ExposureTime": "1/200",
+  "FocalLength": "89.0 mm"
+},
+{
+  "SourceFile": "016.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 800,
+  "Aperture": 4.0,
+  "ExposureTime": "1/80",
+  "FocalLength": "45.0 mm"
+},
+{
+  "SourceFile": "017.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 100,
+  "Aperture": 4.0,
+  "ExposureTime": "1/500",
+  "FocalLength": "74.0 mm"
+},
+{
+  "SourceFile": "018.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 2500,
+  "Aperture": 5.0,
+  "ExposureTime": "1/4",
+  "FocalLength": "35.0 mm"
+},
+{
+  "SourceFile": "019.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 320,
+  "Aperture": 5.0,
+  "ExposureTime": "1/2000",
+  "FocalLength": "24.0 mm"
+},
+{
+  "SourceFile": "020.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 125,
+  "Aperture": 4.0,
+  "ExposureTime": "1/60",
+  "FocalLength": "76.0 mm"
+},
+{
+  "SourceFile": "021.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 2000,
+  "Aperture": 4.0,
+  "ExposureTime": "1/800",
+  "FocalLength": "43.0 mm"
+},
+{
+  "SourceFile": "022.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 200,
+  "Aperture": 22.0,
+  "ExposureTime": "1/40",
+  "FocalLength": "105.0 mm"
+},
+{
+  "SourceFile": "023.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 100,
+  "Aperture": 8.0,
+  "ExposureTime": 3.2,
+  "FocalLength": "39.0 mm"
+},
+{
+  "SourceFile": "024.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 2500,
+  "Aperture": 5.0,
+  "ExposureTime": "1/50",
+  "FocalLength": "43.0 mm"
+},
+{
+  "SourceFile": "025.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 100,
+  "Aperture": 4.0,
+  "ExposureTime": "1/800",
+  "FocalLength": "26.0 mm"
+},
+{
+  "SourceFile": "026.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF16mm F2.8 STM",
+  "ISO": 100,
+  "Aperture": 4.0,
+  "ExposureTime": "1/80",
+  "FocalLength": "16.0 mm"
+},
+{
+  "SourceFile": "027.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF50mm F1.2 L USM",
+  "ISO": 1600,
+  "Aperture": 13.0,
+  "ExposureTime": "1/160",
+  "FocalLength": "50.0 mm"
+},
+{
+  "SourceFile": "028.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF50mm F1.2 L USM",
+  "ISO": 640,
+  "Aperture": 1.4,
+  "ExposureTime": 1.6,
+  "FocalLength": "50.0 mm"
+},
+{
+  "SourceFile": "029.avif",
+  "Model": "iPhone 16 Pro",
+  "LensModel": "iPhone 16 Pro back triple camera 6.765mm f/1.78",
+  "ISO": 100,
+  "Aperture": 1.8,
+  "ExposureTime": "1/1500",
+  "FocalLength": "6.8 mm"
+},
+{
+  "SourceFile": "030.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 10000,
+  "Aperture": 7.1,
+  "ExposureTime": "1/1250",
+  "FocalLength": "500.0 mm"
+},
+{
+  "SourceFile": "031.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 250,
+  "Aperture": 7.1,
+  "ExposureTime": "1/1250",
+  "FocalLength": "500.0 mm"
+},
+{
+  "SourceFile": "032.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM + EXTENDER RF1.4x",
+  "ISO": 12800,
+  "Aperture": 11.0,
+  "ExposureTime": "1/6400",
+  "FocalLength": "700.0 mm"
+},
+{
+  "SourceFile": "033.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 2000,
+  "Aperture": 7.1,
+  "ExposureTime": "1/800",
+  "FocalLength": "500.0 mm"
+},
+{
+  "SourceFile": "034.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 800,
+  "Aperture": 13.0,
+  "ExposureTime": "1/2000",
+  "FocalLength": "135.0 mm"
+},
+{
+  "SourceFile": "035.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 100,
+  "Aperture": 11.0,
+  "ExposureTime": 25,
+  "FocalLength": "200.0 mm"
+},
+{
+  "SourceFile": "036.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 1250,
+  "Aperture": 8.0,
+  "ExposureTime": "1/640",
+  "FocalLength": "400.0 mm"
+},
+{
+  "SourceFile": "037.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 4000,
+  "Aperture": 8.0,
+  "ExposureTime": "1/4000",
+  "FocalLength": "400.0 mm"
+},
+{
+  "SourceFile": "038.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 800,
+  "Aperture": 10.0,
+  "ExposureTime": "1/320",
+  "FocalLength": "105.0 mm"
+},
+{
+  "SourceFile": "039.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 6400,
+  "Aperture": 7.1,
+  "ExposureTime": "1/10000",
+  "FocalLength": "500.0 mm"
+},
+{
+  "SourceFile": "040.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 250,
+  "Aperture": 8.0,
+  "ExposureTime": "1/500",
+  "FocalLength": "105.0 mm"
+},
+{
+  "SourceFile": "041.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 100,
+  "Aperture": 8.0,
+  "ExposureTime": "1/500",
+  "FocalLength": "98.0 mm"
+},
+{
+  "SourceFile": "042.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 5000,
+  "Aperture": 5.6,
+  "ExposureTime": "1/320",
+  "FocalLength": "100.0 mm"
+},
+{
+  "SourceFile": "043.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 640,
+  "Aperture": 14.0,
+  "ExposureTime": "1/500",
+  "FocalLength": "79.0 mm"
+},
+{
+  "SourceFile": "044.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 200,
+  "Aperture": 5.6,
+  "ExposureTime": 1.6,
+  "FocalLength": "24.0 mm"
+},
+{
+  "SourceFile": "045.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 2000,
+  "Aperture": 6.3,
+  "ExposureTime": "1/1000",
+  "FocalLength": "186.0 mm"
+},
+{
+  "SourceFile": "046.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 1000,
+  "Aperture": 7.1,
+  "ExposureTime": "1/1000",
+  "FocalLength": "500.0 mm"
+},
+{
+  "SourceFile": "047.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 3200,
+  "Aperture": 6.3,
+  "ExposureTime": "1/1600",
+  "FocalLength": "324.0 mm"
+},
+{
+  "SourceFile": "048.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 3200,
+  "Aperture": 5.6,
+  "ExposureTime": "1/1250",
+  "FocalLength": "343.0 mm"
+},
+{
+  "SourceFile": "049.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 5000,
+  "Aperture": 4.0,
+  "ExposureTime": "1/1000",
+  "FocalLength": "65.0 mm"
+},
+{
+  "SourceFile": "050.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 1600,
+  "Aperture": 4.5,
+  "ExposureTime": "1/400",
+  "FocalLength": "100.0 mm"
+},
+{
+  "SourceFile": "051.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 1250,
+  "Aperture": 7.1,
+  "ExposureTime": "1/2500",
+  "FocalLength": "500.0 mm"
+},
+{
+  "SourceFile": "052.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 32000,
+  "Aperture": 6.3,
+  "ExposureTime": "1/1000",
+  "FocalLength": "324.0 mm"
+},
+{
+  "SourceFile": "053.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 1000,
+  "Aperture": 11.0,
+  "ExposureTime": "1/125",
+  "FocalLength": "343.0 mm"
+},
+{
+  "SourceFile": "054.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 160,
+  "Aperture": 5.6,
+  "ExposureTime": "1/1600",
+  "FocalLength": "105.0 mm"
+},
+{
+  "SourceFile": "055.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 5000,
+  "Aperture": 5.6,
+  "ExposureTime": "1/1600",
+  "FocalLength": "270.0 mm"
+},
+{
+  "SourceFile": "056.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 2000,
+  "Aperture": 5.0,
+  "ExposureTime": "1/2000",
+  "FocalLength": "238.0 mm"
+},
+{
+  "SourceFile": "057.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 5000,
+  "Aperture": 9.0,
+  "ExposureTime": "1/4000",
+  "FocalLength": "500.0 mm"
+},
+{
+  "SourceFile": "058.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 16000,
+  "Aperture": 7.1,
+  "ExposureTime": "1/2000",
+  "FocalLength": "428.0 mm"
+},
+{
+  "SourceFile": "059.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 800,
+  "Aperture": 6.3,
+  "ExposureTime": "1/2500",
+  "FocalLength": "428.0 mm"
+},
+{
+  "SourceFile": "060.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 1250,
+  "Aperture": 4.5,
+  "ExposureTime": "1/500",
+  "FocalLength": "88.0 mm"
+},
+{
+  "SourceFile": "061.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 6400,
+  "Aperture": 6.3,
+  "ExposureTime": "1/1600",
+  "FocalLength": "270.0 mm"
+},
+{
+  "SourceFile": "062.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 5000,
+  "Aperture": 9.0,
+  "ExposureTime": "1/1250",
+  "FocalLength": "400.0 mm"
+},
+{
+  "SourceFile": "063.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 16000,
+  "Aperture": 6.3,
+  "ExposureTime": "1/800",
+  "FocalLength": "400.0 mm"
+},
+{
+  "SourceFile": "064.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 200,
+  "Aperture": 6.3,
+  "ExposureTime": "1/320",
+  "FocalLength": "89.0 mm"
+},
+{
+  "SourceFile": "065.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 500,
+  "Aperture": 7.1,
+  "ExposureTime": "1/800",
+  "FocalLength": "500.0 mm"
+},
+{
+  "SourceFile": "066.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 200,
+  "Aperture": 11.0,
+  "ExposureTime": 25,
+  "FocalLength": "85.0 mm"
+},
+{
+  "SourceFile": "067.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 6400,
+  "Aperture": 8.0,
+  "ExposureTime": "1/500",
+  "FocalLength": "400.0 mm"
+},
+{
+  "SourceFile": "068.avif"
+},
+{
+  "SourceFile": "069.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 5000,
+  "Aperture": 8.0,
+  "ExposureTime": "1/400",
+  "FocalLength": "347.0 mm"
+},
+{
+  "SourceFile": "070.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 100,
+  "Aperture": 11.0,
+  "ExposureTime": "1/25",
+  "FocalLength": "61.0 mm"
+},
+{
+  "SourceFile": "071.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 125,
+  "Aperture": 8.0,
+  "ExposureTime": "1/125",
+  "FocalLength": "24.0 mm"
+},
+{
+  "SourceFile": "072.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 2500,
+  "Aperture": 8.0,
+  "ExposureTime": "1/640",
+  "FocalLength": "325.0 mm"
+},
+{
+  "SourceFile": "073.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 640,
+  "Aperture": 8.0,
+  "ExposureTime": "1/200",
+  "FocalLength": "300.0 mm"
+},
+{
+  "SourceFile": "074.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 5000,
+  "Aperture": 8.0,
+  "ExposureTime": "1/200",
+  "FocalLength": "400.0 mm"
+},
+{
+  "SourceFile": "075.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 3200,
+  "Aperture": 7.1,
+  "ExposureTime": "1/8000",
+  "FocalLength": "500.0 mm"
+},
+{
+  "SourceFile": "076.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF70-200mm F4 L IS USM",
+  "ISO": 200,
+  "Aperture": 7.1,
+  "ExposureTime": "1/320",
+  "FocalLength": "186.0 mm"
+},
+{
+  "SourceFile": "077.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 500,
+  "Aperture": 11.0,
+  "ExposureTime": "1/500",
+  "FocalLength": "45.0 mm"
+},
+{
+  "SourceFile": "078.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF50mm F1.2 L USM",
+  "ISO": 8000,
+  "Aperture": 1.2,
+  "ExposureTime": "1/2000",
+  "FocalLength": "50.0 mm"
+},
+{
+  "SourceFile": "079.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 3200,
+  "Aperture": 16.0,
+  "ExposureTime": "1/250",
+  "FocalLength": "61.0 mm"
+},
+{
+  "SourceFile": "080.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM + EXTENDER RF1.4x",
+  "ISO": 12800,
+  "Aperture": 11.0,
+  "ExposureTime": "1/6400",
+  "FocalLength": "700.0 mm"
+},
+{
+  "SourceFile": "081.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 160,
+  "Aperture": 8.0,
+  "ExposureTime": "1/400",
+  "FocalLength": "400.0 mm"
+},
+{
+  "SourceFile": "082.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-400mm F5.6-8 IS USM",
+  "ISO": 2000,
+  "Aperture": 8.0,
+  "ExposureTime": "1/5000",
+  "FocalLength": "400.0 mm"
+},
+{
+  "SourceFile": "083.avif",
+  "Model": "Canon EOS R5m2",
+  "LensModel": "RF100-500mm F4.5-7.1 L IS USM",
+  "ISO": 640,
+  "Aperture": 7.1,
+  "ExposureTime": "1/1250",
+  "FocalLength": "223.0 mm"
+},
+{
+  "SourceFile": "084.avif"
+},
+{
+  "SourceFile": "085.avif"
+},
+{
+  "SourceFile": "086.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 100,
+  "Aperture": 5.6,
+  "ExposureTime": 3.8,
+  "FocalLength": "39.0 mm"
+},
+{
+  "SourceFile": "087.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 100,
+  "Aperture": 13.0,
+  "ExposureTime": 2.8,
+  "FocalLength": "28.0 mm"
+},
+{
+  "SourceFile": "088.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 100,
+  "Aperture": 13.0,
+  "ExposureTime": 3.9,
+  "FocalLength": "28.0 mm"
+},
+{
+  "SourceFile": "089.avif",
+  "Model": "iPhone 14 Pro",
+  "LensModel": "iPhone 14 Pro back triple camera 6.86mm f/1.78",
+  "ISO": 1600,
+  "Aperture": 1.8,
+  "ExposureTime": "1/20",
+  "FocalLength": "6.9 mm"
+},
+{
+  "SourceFile": "090.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF24-105mm F4 L IS USM",
+  "ISO": 125,
+  "Aperture": 4.0,
+  "ExposureTime": "1/60",
+  "FocalLength": "76.0 mm"
+},
+{
+  "SourceFile": "091.avif",
+  "Model": "Canon EOS R",
+  "LensModel": "RF50mm F1.2 L USM",
+  "ISO": 320,
+  "Aperture": 3.2,
+  "ExposureTime": 6,
+  "FocalLength": "50.0 mm"
+}]
+;

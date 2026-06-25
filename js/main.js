@@ -162,6 +162,92 @@ function initCursorGlow() {
   tick();
 }
 
+/* ---------- Gallery EXIF metadata (lightbox captions) ---------- */
+/* Module-scoped store, populated lazily by loadGalleryMetadata().
+   Keys are the numeric file id ("001", "016", …). */
+const galleryMetadata = {};
+let galleryMetadataLoaded = false;
+
+async function loadGalleryMetadata(base = "imgs/photography_stack/") {
+  if (galleryMetadataLoaded) return;
+  galleryMetadataLoaded = true;
+  const ingest = (arr) => arr.forEach(item => {
+    const key = (item.SourceFile || "")
+      .replace(/^\.\//, "")
+      .replace(/\.[^.]+$/, "");
+    if (key) galleryMetadata[key] = item;
+  });
+
+  // Primary path: metadata.js loaded via <script> tag set the global.
+  // Works on file:// where fetch is blocked.
+  if (Array.isArray(window.__galleryMetadata)) {
+    ingest(window.__galleryMetadata);
+    return;
+  }
+
+  // Fallback path: fetch metadata.json (http:// / GitHub Pages).
+  try {
+    const r = await fetch(`${base}metadata.json`);
+    if (!r.ok) return;
+    ingest(await r.json());
+  } catch { /* file:// or 404 — caption falls back to counter */ }
+}
+
+/* Normalise a Canon lens-model string: drop the noisy " IS"/" USM"/
+   " STM" suffixes (and their leading space, so no double spaces are
+   left behind), and rewrite the "+ Extender RF1.4X" suffix as a
+   compact "× 1.4 EXT" badge. */
+function cleanLens(lens) {
+  if (!lens) return "";
+  return lens
+    .replace(/ \+ Extender RF1\.4X/gi, " × 1.4 EXT")
+    .replace(/ IS\b/g,  "")
+    .replace(/ USM\b/g, "")
+    .replace(/ STM\b/g, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+/* Build the EXIF caption as HTML — TWO logical groups, each rendered
+   on its own line by CSS (display: block):
+     Line 1: camera + lens   (joined by " + ")
+     Line 2: focal · f/X · shutter · ISO
+   The caption is positioned at runtime by positionCaption() so its
+   left edge is flush with the rendered image's bottom-left corner. */
+function buildExifCaption(url) {
+  const num = url.split("/").pop().replace(/\.[^.]+$/, "");
+  const m = galleryMetadata[num];
+  if (!m) return null;
+
+  // GROUP 1: camera + lens
+  // Skip the lens name on iPhone shots — the built-in lens labels
+  // (e.g. "iPhone 15 Pro back triple camera 6.86mm f/1.78") are noisy
+  // and offer no useful information beyond the camera body.
+  const isIPhone = m.Model && /iphone/i.test(m.Model);
+  const g1 = [];
+  if (m.Model) g1.push(m.Model);
+  if (m.LensModel && !isIPhone) {
+    const lens = cleanLens(m.LensModel);
+    if (lens) g1.push(lens);
+  }
+
+  // GROUP 2: focal + exposure triplet
+  const g2 = [];
+  if (m.FocalLength) {
+    const f = parseFloat(m.FocalLength);
+    if (Number.isFinite(f)) g2.push(`${f}mm`);
+  }
+  if (m.Aperture)     g2.push(`f/${m.Aperture}`);
+  if (m.ExposureTime) g2.push(`${m.ExposureTime}s`);
+  if (m.ISO)          g2.push(`ISO ${m.ISO}`);
+
+  const parts = [];
+  if (g1.length) parts.push(`<span class="cap-group">${g1.join(" + ")}</span>`);
+  if (g2.length) parts.push(`<span class="cap-group">${g2.join(" · ")}</span>`);
+
+  return parts.length ? parts.join("") : null;
+}
+
 /* ---------- Masonry reveal & gallery build ---------- */
 /* Determine the photo count. Two paths:
    1) Fetch the `img_count` manifest written by rename.sh. Tiny HTTP
@@ -208,6 +294,10 @@ async function initMasonry() {
   const base = m.dataset.base || "imgs/photography_stack/";
   const ext  = m.dataset.ext  || "avif";
   const maxDisplay = parseInt(m.dataset.maxDisplay, 10) || 30;
+
+  // Kick off metadata fetch in parallel — it loads while we're still
+  // resolving the count and shuffling.
+  loadGalleryMetadata(base);
 
   // data-count override → manifest → 0 (giving up gracefully).
   const explicit = parseInt(m.dataset.count, 10);
@@ -330,6 +420,12 @@ async function initMasonry() {
 
 /* ---------- Lightbox ---------- */
 function initLightbox() {
+  // If the page links into the photo stack, make sure metadata loads
+  // so the lightbox can show EXIF captions on index too (the masonry
+  // gallery already triggers this, this covers the gallery-preview).
+  if (document.querySelector('a[href*="photography_stack"]')) {
+    loadGalleryMetadata();
+  }
   const trigger = (selector) => document.querySelectorAll(selector);
   // Build lightbox DOM
   const lb = document.createElement("div");
@@ -380,6 +476,21 @@ function initLightbox() {
     });
   };
 
+  // Anchor the caption to the image's bottom-left corner. The image is
+  // centered in the viewport with max-width: 92vw / max-height: 86vh, so
+  // its actual position depends on its aspect ratio and the viewport.
+  // We measure the rendered <img> rect and place the caption just below
+  // and flush with the image's left edge.
+  const positionCaption = () => {
+    if (!img.naturalWidth) return;
+    const r = img.getBoundingClientRect();
+    if (r.width < 1) return;
+    cap.style.left   = `${r.left}px`;
+    cap.style.top    = `${r.bottom + 14}px`;
+    cap.style.bottom = "auto";
+    cap.style.right  = "auto";
+  };
+
   const show = (i) => {
     refreshItems();
     if (!items.length) return;
@@ -387,17 +498,30 @@ function initLightbox() {
     const el = items[idx];
     const src = el.getAttribute("href") || el.querySelector("img")?.getAttribute("src");
     img.src = src;
-    cap.textContent = `${String(idx + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
+    // EXIF-driven caption if metadata is available, else the counter.
+    const exif = buildExifCaption(src);
+    if (exif) {
+      cap.innerHTML = exif;
+    } else {
+      cap.textContent = `${String(idx + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
+    }
     lb.classList.add("open");
     document.body.style.overflow = "hidden";
     // img.decode() resolves when the new image is fully painted — works
     // for cached images too (the load event sometimes doesn't). Fallback
     // to "load" event if decode isn't supported.
+    const afterReady = () => {
+      refreshBackdrops();
+      positionCaption();
+    };
     if (typeof img.decode === "function") {
-      img.decode().then(refreshBackdrops).catch(refreshBackdrops);
+      img.decode().then(afterReady).catch(afterReady);
     } else {
-      img.addEventListener("load", refreshBackdrops, { once: true });
+      img.addEventListener("load", afterReady, { once: true });
     }
+    // The lightbox opens with a brief scale(0.98)→1 transition; reposition
+    // once it settles so the caption sits flush against the final rect.
+    setTimeout(positionCaption, 550);
   };
   const close = () => {
     lb.classList.remove("open");
@@ -424,4 +548,10 @@ function initLightbox() {
     if (e.key === "ArrowLeft")  show(idx - 1);
     if (e.key === "ArrowRight") show(idx + 1);
   });
+
+  // Reposition the caption when the viewport (and therefore the
+  // image's rendered rect) changes.
+  window.addEventListener("resize", () => {
+    if (lb.classList.contains("open")) positionCaption();
+  }, { passive: true });
 }

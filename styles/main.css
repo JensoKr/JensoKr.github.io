@@ -1204,16 +1204,26 @@ h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
 .lightbox-next:hover  { transform: translateY(-50%) scale(1.08); }
 .lightbox-prev:active { transform: translateY(-50%) scale(0.94); }
 .lightbox-next:active { transform: translateY(-50%) scale(0.94); }
+/* The caption is anchored to the image's bottom-left corner by JS
+   (positionCaption() sets `left` and `top` at runtime). The defaults
+   below are only the fallback before JS has had a chance to run. */
 .lightbox-caption {
   position: absolute;
-  bottom: 1.5rem; left: 50%;
-  transform: translateX(-50%);
+  bottom: 1.5rem;
+  left: 1.5rem;
   font-family: var(--font-mono);
   font-size: 0.78rem;
+  line-height: 1.6;
   color: var(--text-dim);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-align: left;
+  max-width: calc(100vw - 3rem);
 }
+
+/* Two groups, always stacked vertically — line 1 = camera + lens,
+   line 2 = focal · f/X · shutter · ISO. */
+.lightbox-caption .cap-group { display: block; }
 
 /* -------- Contact -------- */
 .contact-wrap {
