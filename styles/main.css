@@ -992,9 +992,13 @@ h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
 .masonry-item img {
   width: 100%; height: auto;
   display: block;
-  transition: filter 0.5s var(--ease), opacity 0.5s var(--ease);
+  transition: filter 0.5s var(--ease), opacity 0.5s var(--ease),
+              transform 0.8s var(--ease);
 }
-.masonry-item:hover img { filter: brightness(1.08) saturate(1.08); }
+.masonry-item:hover img {
+  filter: brightness(1.08) saturate(1.08);
+  transform: scale(1.05);
+}
 
 .gallery-controls {
   display: flex;
