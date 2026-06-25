@@ -785,15 +785,6 @@ window.__galleryMetadata =
 {
   "SourceFile": "090.avif",
   "Model": "Canon EOS R",
-  "LensModel": "RF24-105mm F4 L IS USM",
-  "ISO": 125,
-  "Aperture": 4.0,
-  "ExposureTime": "1/60",
-  "FocalLength": "76.0 mm"
-},
-{
-  "SourceFile": "091.avif",
-  "Model": "Canon EOS R",
   "LensModel": "RF50mm F1.2 L USM",
   "ISO": 320,
   "Aperture": 3.2,
