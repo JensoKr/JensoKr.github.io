@@ -629,6 +629,18 @@
     .hq-footer-cta:hover .arrow {
       transform: translateX(3px);
     }
+    /* Subtle disclaimer prose below the model attribution. Matches the
+       fineprint width (Tool max-width = 678px) and stays understated. */
+    .hq-disclaimer {
+      max-width: 678px;
+      margin: 0.8rem auto 0;
+      font-size: 0.72rem;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--text-dim);
+      text-align: center;
+    }
+
     .hq-footer-fineprint {
       display: flex;
       justify-content: space-between;
@@ -769,9 +781,15 @@
            and centred so the line starts and ends exactly under the
            tool, not across the full container. -->
       <div class="hq-footer-fineprint" style="max-width: 678px; margin-left: auto; margin-right: auto;">
-        <span>herbIQ &copy; 2026 Jens Krause</span>
-        <span>Model: HGBR · Krause et&nbsp;al. 2025</span>
+        <span>herbIQ by Jens Krause</span>
+        <span>Model: HGBR</span>
       </div>
+      <p class="hq-disclaimer" style="max-width: 540px;">
+        The estimated results can be unrealistic. The models used are trained on
+        ecological equilibrium states and are not meant to explore ecological
+        shocks or unrealistic boundary conditions. The results can not replace
+        ecological, process-based simulation or professinal assessments.
+      </p>
     </div>
   </section>
 
