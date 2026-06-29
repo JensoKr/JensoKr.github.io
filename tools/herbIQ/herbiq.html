@@ -85,6 +85,30 @@
       box-shadow: 0 0 0 4px rgba(214, 84, 84, 0.18);
     }
 
+    /* ---------- Hero section-head: auto-width eyebrow + remaining title.
+       On narrow viewports (<860 px) it collapses to a single column so
+       the eyebrow stacks above the title — matches photography.html /
+       work.html behaviour and stops the title from being squeezed into
+       a tiny column with awkward wrapping. */
+    .hq-head-grid {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+    .hq-head-title {
+      font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+      text-align: right;
+      text-wrap: balance;
+    }
+    @media (max-width: 860px) {
+      .hq-head-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem !important;
+      }
+      .hq-head-title {
+        text-align: left;
+        font-size: clamp(2.2rem, 9vw, 3.2rem);
+      }
+    }
+
     /* ---------- Hero intro grid: lead+stats (left) | two facet-cards (right) ---------- */
     .hq-intro {
       display: grid;
@@ -120,6 +144,22 @@
     .hq-intro-left .stat { padding: 1.1rem 1.1rem; }
     .hq-intro-left .stat .num { font-size: clamp(1.5rem, 2.2vw, 2rem); }
     .hq-intro-left .stat .lbl { font-size: 0.68rem; letter-spacing: 0.14em; }
+
+    /* Count-up value span: a fixed-width, right-aligned cell inside the
+       <em> so the static prefix/suffix text around it (e.g. " GB",
+       "R² = ") stays pinned in place while the number ticks up. The
+       gradient-clip text effect from .stat .num em is re-applied here
+       because background-clip: text on a parent doesn't propagate to
+       descendants — without this the child text would be transparent. */
+    .stat .num .count-value {
+      display: inline-block;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      background: var(--grad-warm);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
     /* Right column = two stacked facet-cards. Use the site's .duality
        grid which is already 1fr 1fr, but force a vertical stack here
        since the visual goal is a column of large cards next to text. */
@@ -247,13 +287,29 @@
        viewports — inputs take whatever space is left, predictions
        occupy a fixed-but-narrow column with glassy compact cards that
        stay sticky while the user scrolls. */
+    /* Desktop default: hide the short "Reset" label, show full text. */
+    .hq-reset-short { display: none; }
+
     @media (max-width: 880px) {
       .hq-wrap { padding: 0 0.85rem; }
+      /* Mobile: swap to the short "Reset" label so the button stops
+         dictating the column width. */
+      .hq-reset-long  { display: none; }
+      .hq-reset-short { display: inline; }
+      /* Inputs takes whatever's left; predictions are narrow and
+         fluid. With the short button label the column can now go down
+         to ~95 px without clipping. */
       .hq-grid {
-        grid-template-columns: minmax(0, 400px) clamp(120px, 34vw, 155px);
-        justify-content: space-between;
-        gap: 0.6rem;
+        grid-template-columns: minmax(0, 1fr) clamp(95px, 24vw, 115px);
+        gap: 0.55rem;
       }
+      /* Three stats need to fit side-by-side on narrow phones: scale
+         font and padding down so 1.700.000 / 93.4 GB / R² = 0.88 all
+         fit in their column without horizontal overflow. */
+      .hq-intro-left .stat-grid { gap: 0.5rem; }
+      .hq-intro-left .stat { padding: 0.75rem 0.55rem; }
+      .hq-intro-left .stat .num { font-size: clamp(0.85rem, 4vw, 1.4rem); }
+      .hq-intro-left .stat .lbl { font-size: 0.55rem; letter-spacing: 0.1em; margin-top: 0.35rem; }
       .hq-section-label {
         font-size: 1.15rem;
       }
@@ -686,11 +742,11 @@
   <!-- Header / Hero -->
   <section class="section" style="padding: 10rem 0 2rem">
     <div class="container">
-      <div class="section-head" style="align-items: end; margin-bottom: 3rem; grid-template-columns: auto minmax(0, 1fr)">
+      <div class="section-head hq-head-grid" style="align-items: end; margin-bottom: 3rem">
         <div class="meta reveal">
           <span class="eyebrow">Interactive tool · 2026</span>
         </div>
-        <h1 class="h-display reveal delay-1" style="font-size: clamp(2.6rem, 5.5vw, 4.4rem); text-align: right; text-wrap: balance">
+        <h1 class="h-display reveal delay-1 hq-head-title">
           From a process-based simulation to <em>your browser.</em>
         </h1>
       </div>
@@ -712,15 +768,15 @@
           </div>
           <div class="stat-grid reveal delay-2">
             <div class="stat">
-              <div class="num"><em>1.772.035</em></div>
+              <div class="num"><em data-count="1772035" data-count-format="locale" data-count-ease-pow="8"><span class="count-value" style="text-align: left">1.772.035</span></em></div>
               <div class="lbl">Training samples</div>
             </div>
             <div class="stat">
-              <div class="num"><em>93.4 GB</em></div>
+              <div class="num"><em data-count="93.4" data-count-decimals="1"><span class="count-value" style="min-width: 3.5ch">93.4</span> GB</em></div>
               <div class="lbl">Model output</div>
             </div>
             <div class="stat">
-              <div class="num"><em>R&sup2; = 0.88</em></div>
+              <div class="num"><em data-count="0.88" data-count-decimals="2">R&sup2; = <span class="count-value" style="min-width: 2.5ch">0.88</span></em></div>
               <div class="lbl">Avg. model fit</div>
             </div>
           </div>
@@ -732,7 +788,7 @@
             <h3>Machine&#8209;Learning Model</h3>
             <p>Three regressors are combined into a single
               ONNX package. The model runs entirely
-              client&#8209;side via <tt>onnxruntime</tt>. <br> No backend, no telemetry; your sliders stay on your device.</p>
+              client&#8209;side via <tt>onnxruntime</tt>. <br> No backend, no telemetry.</p>
             <div class="chip-row" style="margin-top: 1rem">
               <span class="chip">scikit&#8209;learn</span>
               <span class="chip">~3.3 MB</span>
@@ -745,7 +801,7 @@
             <p>~1.8 million samples were extracted from over a billion simulated data points &mdash; based on
               biomes modelled in <em>Krause et al. (2025)</em>.</p>
             <div class="chip-row" style="margin-top: 1rem">
-              <span class="chip">1.047.816.000 Data Points</span>
+              <span class="chip">1.047.816.000 data points</span>
               <span class="chip">equlibirum state</span>
               <span class="chip">2025 GMD paper</span>
             </div>
@@ -771,7 +827,8 @@
           <div id="outputs" class="hq-predictions-stack"></div>
           <button class="hq-reset" id="reset" type="button" aria-label="Reset to defaults">
             <span class="icon" aria-hidden="true">&#8635;</span>
-            <span>Reset to Defaults</span>
+            <span class="hq-reset-long">Reset to Defaults</span>
+            <span class="hq-reset-short">Reset</span>
           </button>
         </div>
       </section>
@@ -839,6 +896,70 @@
        third-party CDN sees the visitor's IP. -->
   <script src="ort/ort.min.js"></script>
   <script>
+    /* ---------- Count-up animation for the .stat-grid in the hero ----------
+       Each <em data-count="…"> in the stat cards is animated from 0 to its
+       target value when it enters the viewport. Format hints come from the
+       data attributes so we can reuse one routine for the three different
+       number styles (locale-grouped integer, decimal with unit, R² with
+       prefix). Respects prefers-reduced-motion. */
+    (function () {
+      const els = document.querySelectorAll('[data-count]');
+      if (!els.length) return;
+
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      // Default ease: rises ~97% within the first half of the duration
+      // and crawls in the rest. Power 5 (quint) gives a noticeable
+      // early rise; per-element override via `data-count-ease-pow`
+      // makes the rise even more dramatic for large numbers like the
+      // training-sample counter.
+      const DEFAULT_POW = 5;
+      const DUR         = 1600;
+
+      const localeFmt = new Intl.NumberFormat('de-DE');
+      // Render mutates only the .count-value child of the <em>.
+      // Static prefix/suffix text lives in the HTML and is never
+      // touched, so units like " GB" or labels like "R² = " stay
+      // pinned in place regardless of how many digits the value has.
+      const render = (el, value) => {
+        const valueSpan = el.querySelector('.count-value');
+        if (!valueSpan) return;
+        const decimals = parseInt(el.dataset.countDecimals || '0', 10);
+        const fmt      = el.dataset.countFormat;
+        let body;
+        if (fmt === 'locale')      body = localeFmt.format(Math.round(value));
+        else if (decimals > 0)     body = value.toFixed(decimals);
+        else                       body = String(Math.round(value));
+        valueSpan.textContent = body;
+      };
+
+      const animate = (el) => {
+        const target = parseFloat(el.dataset.count);
+        if (reduced) { render(el, target); return; }
+        el.dataset.countAnimated = '1';
+        const pow   = parseFloat(el.dataset.countEasePow) || DEFAULT_POW;
+        const ease  = t => 1 - Math.pow(1 - t, pow);
+        const start = performance.now();
+        const step  = (now) => {
+          const t = Math.min((now - start) / DUR, 1);
+          render(el, target * ease(t));
+          if (t < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          if (el.dataset.countAnimated) return;       // run once
+          animate(el);
+          io.unobserve(el);
+        });
+      }, { threshold: 0.4 });
+
+      els.forEach(el => io.observe(el));
+    })();
+
     (async function () {
       const statusEl  = document.getElementById('status');
       const slidersEl = document.getElementById('sliders');
