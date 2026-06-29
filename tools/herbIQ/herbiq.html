@@ -267,6 +267,17 @@
       line-height: 1;
       color: var(--accent-warm);
       transition: opacity 0.2s var(--ease);
+      /* Italic display-serif glyphs extend a hair past their character
+         box. When the text content changes rapidly (slider drag), Safari
+         (especially iOS) sometimes leaves those overshoot pixels behind
+         instead of repainting them. The three properties below force a
+         well-defined containing box, leave room for the overhang and
+         promote the span to its own compositor layer so every update
+         is repainted cleanly. */
+      display: inline-block;
+      padding-right: 0.18em;
+      transform: translateZ(0);
+      will-change: contents;
     }
     .hq-pred-value.stale { opacity: 0.4; }
     .hq-pred-unit {
