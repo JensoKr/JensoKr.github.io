@@ -52,9 +52,27 @@
         Since 2018, I have been developing an ecosystem modelling framework that integrates vegetation dynamics (LPJ&#8209;GUESS) with food&#8209;web simulation (Madingley) &mdash; enabling the explicit representation of interactions across trophic levels.
       </p>
 
-      <div class="scroll-cue reveal delay-3">
-        <span>Scroll</span>
-        <span class="line"></span>
+      <div class="hero-bottom-row reveal delay-3">
+        <div class="hq-app-row">
+          <a class="hq-app-banner" href="tools/herbIQ/herbiq.html">
+            <div class="hq-app-banner-icon">
+              <img src="tools/herbIQ/icons/herbIQ_icon.png" alt="herbIQ app icon" />
+            </div>
+            <div class="hq-app-banner-text">
+              <div class="hq-app-banner-eyebrow">Newly available web-app</div>
+              <div class="hq-app-banner-title">herbIQ for macOS &amp; Windows</div>
+              <div class="hq-app-banner-sub">
+                Lightweight use &middot; No model data needed<br>
+                Pre-trained machine-learning Estimator
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="scroll-cue">
+          <span>Scroll</span>
+          <span class="line"></span>
+        </div>
+        <div></div>
       </div>
     </div>
   </header>
@@ -124,6 +142,41 @@
 
       <div class="tl">
         <div class="tl-axis"></div>
+
+        <article class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-thumb" style="background: transparent; border: none; overflow: visible; aspect-ratio: 1;">
+              <img src="tools/herbIQ/icons/herbIQ_icon.png" alt="herbIQ app icon" style="object-fit: contain; width: 100%; height: 100%;" />
+            </div>
+            <div class="tl-info">
+              <div class="yr">June 2026 · Browser-based tool</div>
+              <h3><span style="color:var(--accent-warm)"><em>released</em></span> &mdash; herbIQ, an interactive ecosystem estimator</h3>
+              <p>
+                Trained a machine&#8209;learning regressor on coupled LPJ&#8209;GUESS &times; Madingley
+                simulation output: this hands&#8209;on tool compress
+                the multi&#8209;trophic ecosystem response down to six sliders
+                covering herbivore biomass, abundance and climate.
+                Predictions for NPP, leaf biomass and
+                herbivory pressure update in real time.
+              </p>
+              <p>
+                Built as a self&#8209;contained desktop application for macOS
+                and Windows first, then distilled into a single 3.3&nbsp;MB ONNX
+                package that runs entirely client&#8209;side via
+                <em>onnxruntime&#8209;web</em> &mdash; no backend, no telemetry.
+                The web preview lets curious readers play with the model
+                directly in the browser; the native desktop build offers additional features.
+              </p>
+              <div class="tags">
+                <span class="chip">Machine Learning</span>
+                <span class="chip">Web-based Tool</span>
+                <span class="chip">native macOS &amp; Windows App</span>
+              </div>
+              <a class="link-arrow" href="tools/herbIQ/herbiq.html">Try it in your browser<span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+        </article>
 
         <article class="tl-item reveal">
           <div class="tl-dot"></div>

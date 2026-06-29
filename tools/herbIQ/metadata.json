@@ -1,0 +1,205 @@
+{
+  "model_version": "HGBR-2026-06-13",
+  "trained_on": "2026-06-13",
+  "trained_corpus": "Krause et al. 2025 (online coupling)",
+  "sklearn_version": "1.7.1",
+  "skl2onnx_version": "1.18.0",
+  "onnx_opset": 18,
+  "scaler_baked_in": false,
+  "preprocess_baked_in": true,
+  "algorithm": "HGBR",
+  "hyperparameters": {
+    "max_iter": 500,
+    "max_depth": 12,
+    "learning_rate": 0.1,
+    "min_samples_leaf": 20
+  },
+  "raw_input_tensor": "raw_features",
+  "raw_input_shape": [
+    null,
+    6
+  ],
+  "inputs": [
+    {
+      "name": "HerbivoreAbundanceDensity",
+      "ui_label": "Herbivore Abundance",
+      "ui_section": "Herbivore",
+      "unit": "ind/km²",
+      "min": 3000,
+      "max": 10000000,
+      "display_min": 100000,
+      "display_max": 10000000,
+      "default": 138013,
+      "step": 1,
+      "scale": "log10",
+      "model_index": 1,
+      "preprocess": "log10",
+      "icon_left": "few",
+      "icon_right": "many"
+    },
+    {
+      "name": "HerbivoreBiomassDensity",
+      "ui_label": "Herbivore Biomass",
+      "ui_section": "Herbivore",
+      "unit": "kg/km²",
+      "min": 656,
+      "max": 129617,
+      "display_min": 80000,
+      "display_max": 300000,
+      "default": 25586,
+      "step": 1,
+      "scale": "log10",
+      "model_index": 0,
+      "preprocess": "log10",
+      "icon_left": "light",
+      "icon_right": "heavy"
+    },
+    {
+      "name": "GridCellTemperatureMin",
+      "ui_label": "Yearly Temperatur Range",
+      "ui_section": "Temperature",
+      "unit": "°C",
+      "min": -19,
+      "max": 38,
+      "default": 10,
+      "step": 1,
+      "scale": "linear",
+      "model_index": 2,
+      "preprocess": "add_273_15",
+      "ui_pair": "GridCellTemperatureMax",
+      "ui_role": "low",
+      "icon_left": "cold",
+      "icon_right": "warm"
+    },
+    {
+      "name": "GridCellTemperatureMax",
+      "unit": "°C",
+      "min": -19,
+      "max": 38,
+      "default": 24,
+      "step": 1,
+      "scale": "linear",
+      "model_index": 3,
+      "preprocess": "add_273_15",
+      "ui_pair": "GridCellTemperatureMin",
+      "ui_role": "high"
+    },
+    {
+      "name": "GridCellDiurnalTemperatureRange",
+      "ui_label": "Daily Temperatur Range",
+      "ui_section": "Diurnal Temp.",
+      "unit": "°C",
+      "min": 5,
+      "max": 20,
+      "default": 10,
+      "step": 1,
+      "scale": "linear",
+      "model_index": 4,
+      "preprocess": "identity",
+      "icon_left": "flat",
+      "icon_right": "fluct"
+    },
+    {
+      "name": "GridCellPrecipitation",
+      "ui_label": "Precipitation Sum",
+      "ui_section": "Precipitation",
+      "unit": "mm/yr",
+      "min": 0,
+      "max": 3100,
+      "default": 782,
+      "step": 1,
+      "scale": "linear",
+      "model_index": 5,
+      "preprocess": "identity",
+      "icon_left": "arid",
+      "icon_right": "wet"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "NPP",
+      "long_name": "Net Primary Productivity",
+      "raw_unit": "kg C · m⁻² · yr⁻¹",
+      "display_unit": "g C/m²/yr",
+      "js_postprocess": {
+        "multiply": 1000.0,
+        "clip_min": null
+      },
+      "onnx_output_tensor": "npp",
+      "r2": 0.9085071137082569,
+      "rmse": 0.10436063279012196,
+      "mae": 0.0718698231214477
+    },
+    {
+      "name": "Leaf Biomass",
+      "long_name": "Leaf Biomass",
+      "raw_unit": "kg · km⁻²",
+      "display_unit": "t/km²",
+      "js_postprocess": {
+        "multiply": 0.001,
+        "clip_min": 0.0,
+        "round_to": 10
+      },
+      "onnx_output_tensor": "lb",
+      "r2": 0.933919200643627,
+      "rmse": 175764.09748525484,
+      "mae": 108188.61348127564
+    },
+    {
+      "name": "Herbivory",
+      "long_name": "Herbivore Biomass Reduction",
+      "raw_unit": "kg · km⁻²",
+      "display_unit": "t/km²",
+      "js_postprocess": {
+        "multiply": 0.001,
+        "clip_min": 0.0,
+        "round_to": 1
+      },
+      "onnx_output_tensor": "hbr",
+      "r2": 0.8096039142206719,
+      "rmse": 12494.994299879545,
+      "mae": 4638.508004822749
+    }
+  ],
+  "ampel": {
+    "method": "mean-distance-to-5-nearest-neighbors-in-scaled-input-space",
+    "scaler": {
+      "type": "StandardScaler",
+      "mean": [
+        4.276551025321897,
+        5.128130447030179,
+        282.783860868823,
+        296.6607913151031,
+        11.300642755710907,
+        822.6812446264403
+      ],
+      "scale": [
+        0.3459392376038286,
+        0.5706825286798815,
+        13.721633941209673,
+        5.304999911944987,
+        2.7391203648417948,
+        449.32635548416084
+      ]
+    },
+    "thresholds": {
+      "green_below": 0.3608218737241142,
+      "red_above": 0.7605708030039501
+    },
+    "k": 5,
+    "nn_index_asset": "herbiq-nn-index.bin",
+    "nn_index_format": {
+      "magic": "HNN1",
+      "header": "u32 n_points, u32 n_dims (little-endian)",
+      "body": "float32 little-endian, row-major, already in scaled space",
+      "n_points": 997960,
+      "n_dims": 6
+    },
+    "scaler_asset": "nn-scaler.json"
+  },
+  "deliverable_sizes_bytes": {
+    "herbiq.onnx": 3448370,
+    "herbiq-nn-index.bin": 23951052,
+    "nn-scaler.json": 363
+  }
+}
